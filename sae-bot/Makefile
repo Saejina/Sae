@@ -2,7 +2,9 @@ all: install
 
 install:
 	@echo "Installing NodeJS packages"
-	@npm i --save
+	@npm i
 
 start:
 	@npm start
+
+.PHONY: install start

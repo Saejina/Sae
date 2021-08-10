@@ -14,4 +14,4 @@ start-sae-app:
 start-sae-bot:
 	@make -C sae-bot start
 
-.PHONY: all start-sae-app
+.PHONY: install install-sae-app install-sae-bot start-sae-app start-sae-bot
