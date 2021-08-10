@@ -1,19 +1,15 @@
 {
   "name": "sae-bot",
   "version": "1.0.0",
-  "description": "Discord bot with Discord.js and Express.js for Saejina Esports",
+  "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Lucas-COX/Sae.git"
   },
   "author": "Havok",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Lucas-COX/Sae/issues"
-  },
-  "homepage": "https://github.com/Lucas-COX/Sae#readme"
+  "dependencies": {
+    "discord.js": "^13.0.1"
+  }
 }

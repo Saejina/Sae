@@ -12,6 +12,11 @@ To use this repository locally, you will need:
 
     make
 
+## NodeJS Version
+
+
+    16.6.0
+
 ## Running React Application
 
 
