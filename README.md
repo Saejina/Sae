@@ -4,7 +4,7 @@ To use this repository locally, you will need:
 
 - [Git](https://git-scm.com/) (`git` command)
 - [Make](https://en.wikipedia.org/wiki/Make_(software)) (`make` command)
-- [NodeJS](https://nodejs.org/en/) 12+ (`node` command)
+- [NodeJS](https://nodejs.org/en/) 16.6.0 (`node` command)
 - a browser, preferrably Google Chrome or Firefox
 
 ## Installation
@@ -12,10 +12,6 @@ To use this repository locally, you will need:
 
     make
 
-## NodeJS Version
-
-
-    16.6.0
 
 ## Running React Application
 
