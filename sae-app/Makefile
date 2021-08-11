@@ -1,6 +1,7 @@
 all: install
 
 install:
+	@echo -e "\033[0;33mInstalling NodeJS packages for sae-app\033[0m"
 	@yarn install
 
 start:
