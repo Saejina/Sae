@@ -42,10 +42,10 @@ clean-sae-app:
 	@make -C sae-app clean
 
 format-sae-bot:
-	@make -C sae-bot format
+	@cd sae-bot && make format
 
 format-sae-app:
-	@make -C sae-app format
+	@cd sae-app && make format
 
 format: format-sae-bot format-sae-app
 

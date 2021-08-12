@@ -1,3 +1,4 @@
+import React from 'react';
 import './commands.css';
 
 export default function Commands() {
