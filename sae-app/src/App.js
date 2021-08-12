@@ -1,10 +1,10 @@
-import Sidebar from "./components/Sidebar/Sidebar";
-import Topbar from "./components/Topbar/Topbar";
-import "./app.css";
-import Home from "./pages/home/Home";
-import Users from "./pages/users/Users";
-import Commands from "./pages/commands/Commands";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import Sidebar from './components/Sidebar/Sidebar';
+import Topbar from './components/Topbar/Topbar';
+import './app.css';
+import Home from './pages/home/Home';
+import Users from './pages/users/Users';
+import Commands from './pages/commands/Commands';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 function App() {
   return (
