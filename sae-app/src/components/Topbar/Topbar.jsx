@@ -14,12 +14,12 @@ export default function Topbar({ darkMode = false }) {
                     <div className="topbarIcons">
                         {!darkMode && (
                             <div className="topbarIcon">
-                                <BrightnessHigh />
+                                <Brightness3 />
                             </div>
                         )}
                         {darkMode && (
                             <div className="topbarIcon">
-                                <Brightness3 />
+                                <BrightnessHigh />
                             </div>
                         )}
                         <div className="topbarIcon">
