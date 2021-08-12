@@ -1,9 +1,9 @@
-import "./commands.css"
+import './commands.css';
 
 export default function Commands() {
-    return (
-        <div classsName="commands">
+  return (
+    <div classsName="commands">
             Commands
-        </div>
-    )
+    </div>
+  );
 }
