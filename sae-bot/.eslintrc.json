@@ -4,12 +4,13 @@
         "node": true
     },
     "extends": [
-        "google"
+        "airbnb-base"
     ],
     "parserOptions": {
         "ecmaVersion": 12,
         "sourceType": "module"
     },
     "rules": {
+        "indent": ["error", 4]
     }
 }
