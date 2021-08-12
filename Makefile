@@ -1,7 +1,20 @@
-all: install
+all: all-sae-app all-sae-bot
 
 
 install: install-sae install-sae-app install-sae-bot
+
+
+all-sae-app:
+	@make -C sae-app
+
+all-sae-bot:
+	@make -C sae-bot
+
+upgrade-sae-app:
+	@make -C sae-app upgrade
+
+upgrade-sae-bot:
+	@make -C sae-bot upgrade
 
 install-sae:
 	@yarn install
