@@ -5,7 +5,10 @@
     },
     "extends": [
         "eslint:recommended",
-        "google"
+        "airbnb",
+        "plugin:import/recommended",
+        "plugin:jsx-a11y/recommended",
+        "plugin:react/recommended"
     ],
     "parserOptions": {
         "ecmaFeatures": {
@@ -17,7 +20,11 @@
     "plugins": [
         "react"
     ],
-    "rules": {},
+    "rules": {
+        "indent": ["error", 4],
+        "react/jsx-indent": ["error", 4],
+        "react/jsx-indent-props": ["error", 4]
+    },
     "settings": {
         "react": {
             "version": "detect"
