@@ -1,7 +1,10 @@
 all: install
 
 
-install: install-sae-app install-sae-bot
+install: install-sae install-sae-app install-sae-bot
+
+install-sae:
+	@yarn install
 
 install-sae-app:
 	@make -C sae-app install
@@ -25,5 +28,21 @@ clean-sae-bot:
 clean-sae-app:
 	@make -C sae-app clean
 
+format-sae-bot:
+	@make -C sae-bot format
 
-.PHONY: install install-sae-app install-sae-bot start-sae-app start-sae-bot
+format-sae-app:
+	@make -C sae-app format
+
+format: format-sae-bot format-sae-app
+
+.PHONY: install \
+	install-sae-app \
+	install-sae-bot \
+	start-sae-app \
+	start-sae-bot \
+	format-sae-app \
+	format-sae-bot \
+	format \
+	clean-sae-bot \
+	clean-sae-app \
