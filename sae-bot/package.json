@@ -5,11 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "lint": "eslint '*/**/*.js' --quiet --fix"
   },
   "author": "Havok",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^13.0.1"
+    "discord.js": "^13.0.1",
+    "eslint": "^7.32.0",
+    "eslint-config-google": "^0.14.0"
   }
 }
