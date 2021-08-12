@@ -1,20 +1,27 @@
 import React from 'react';
-import Logo from '../Logo/Logo';
-import './topbar.css';
+import PropTypes from 'prop-types';
 import {
     NotificationsNone, Settings, BrightnessHigh, Brightness3,
 } from '@material-ui/icons/';
+import './topbar.css';
 
-export default function Topbar() {
+export default function Topbar({ darkMode = false }) {
     return (
         <div className="topbar">
             <div className="topbarWrapper">
                 <div className="topLeft" />
                 <div className="topRight">
                     <div className="topbarIcons">
-                        <div className="topbarIcon">
-                            <Brightness3 />
-                        </div>
+                        {!darkMode && (
+                            <div className="topbarIcon">
+                                <BrightnessHigh />
+                            </div>
+                        )}
+                        {darkMode && (
+                            <div className="topbarIcon">
+                                <Brightness3 />
+                            </div>
+                        )}
                         <div className="topbarIcon">
                             <NotificationsNone />
                         </div>
@@ -28,3 +35,11 @@ export default function Topbar() {
         </div>
     );
 }
+
+Topbar.defaultProps = {
+    darkMode: false,
+};
+
+Topbar.propTypes = {
+    darkMode: PropTypes.bool,
+};

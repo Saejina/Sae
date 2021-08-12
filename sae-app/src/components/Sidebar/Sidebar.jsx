@@ -1,9 +1,8 @@
-import './sidebar.css';
 import { Face, Adb, Home } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router';
 import clsx from 'clsx';
-import Logo from '../Logo/Logo';
+import './sidebar.css';
 
 export default function Sidebar() {
     const location = useLocation();
