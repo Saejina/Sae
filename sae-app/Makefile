@@ -14,9 +14,19 @@ start:
 
 clean:
 	@rm -f yarn-error.log
+	@rm -rf build
 
 format:
 	@printf "\033[0;33mFormatting sae-app files...\033[0m\n"
 	@yarn lint
+
+build:
+	@yarn build
+
+deploy:
+	@yarn deploy
+
+host: build deploy
+
 
 .PHONY: install start format clean upgrade
