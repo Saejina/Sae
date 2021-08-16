@@ -52,6 +52,14 @@ format-sae-app:
 
 format: format-sae-bot format-sae-app
 
+build-sae-app:
+	@make -C sae-app/ build
+
+deploy-sae-app:
+	@make -C sae-app/build
+
+host-sae-app:
+	@make -C sae-app/ host
 
 .PHONY: install \
 	install-sae-app \
