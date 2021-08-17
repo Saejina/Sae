@@ -1,9 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-export default function Commands() {
+export function Commands() {
     return (
         <div>
             Commands
         </div>
-    )
+    );
 }
+
+export default Commands;
