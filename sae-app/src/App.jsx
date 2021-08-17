@@ -1,29 +1,20 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import React from 'react';
-import Sidebar from './components/Sidebar/Sidebar';
-import Topbar from './components/Topbar/Topbar';
 import './app.css';
-import Home from './pages/home/Home';
-import Users from './pages/users/Users';
-import Commands from './pages/commands/Commands';
+import { routes } from './routes';
+import { getPage } from './utils';
 
 function App() {
     return (
         <Router>
             <div>
-                <div className="container">
-                    <div className="sidebarContainer">
-                        <Sidebar />
-                    </div>
-                    <div className="rightSide">
-                        <Topbar />
-                        <Switch>
-                            <Route path="/users"><Users /></Route>
-                            <Route path="/commands"><Commands /></Route>
-                            <Route path="/"><Home /></Route>
-                        </Switch>
-                    </div>
-                </div>
+                <Switch>
+                    {routes.map((route) => (
+                        <Route key="route" path={route.path}>
+                            {getPage(route.page)}
+                        </Route>
+                    ))}
+                </Switch>
             </div>
         </Router>
     );
