@@ -14,6 +14,7 @@ function App() {
                         <Route key="route" path={route.path}>
                             {getPage(route.page)}
                         </Route>
+                    ))}
                 </Switch>
             </div>
         </Router>
