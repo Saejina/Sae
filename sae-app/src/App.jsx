@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 import { routes } from './routes';
 import { getPage } from './utils';
@@ -13,7 +14,6 @@ function App() {
                         <Route key="route" path={route.path}>
                             {getPage(route.page)}
                         </Route>
-                    ))}
                 </Switch>
             </div>
         </Router>
