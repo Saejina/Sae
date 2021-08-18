@@ -21,9 +21,10 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-    
-      - name: Install packages, build and test
+
+      - name: Install packages, lint, build and test
         run: |
           cd sae-app
           yarn
+          yarn lint
           yarn build
