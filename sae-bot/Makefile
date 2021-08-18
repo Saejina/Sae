@@ -1,4 +1,4 @@
-all: install upgrade
+all: install database
 
 install:
 	@printf "\033[0;33mInstalling NodeJS packages for sae-bot\033[0m\n"
@@ -19,4 +19,7 @@ format:
 	@printf "\033[0;33mFormatting sae-bot files...\033[0m\n"
 	@yarn lint
 
-.PHONY: install start format clean upgrade
+database:
+	@yarn run db
+
+.PHONY: install start format clean upgrade database
