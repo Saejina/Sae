@@ -1,4 +1,4 @@
-all: install upgrade
+all: install
 
 install:
 	@printf "\033[0;33mInstalling NodeJS packages for sae-app\033[0m\n"
