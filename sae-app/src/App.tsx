@@ -1,6 +1,5 @@
 import React from 'react';
 import routes from './configs/routes';
-import { NotFound } from './pages';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
 function App(): JSX.Element {
