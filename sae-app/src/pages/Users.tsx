@@ -1,5 +1,7 @@
+import AppLayout from '../components/AppLayout';
+
 export function Users(): JSX.Element {
-    return <div>Users</div>;
+    return <AppLayout>Users</AppLayout>;
 }
 
 export default Users;
