@@ -4,12 +4,12 @@
         "es2021": true
     },
     "extends": [
-        "eslint:recommended",
-        "airbnb",
-        "plugin:import/recommended",
-        "plugin:jsx-a11y/recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:prettier/recommended",
         "plugin:react/recommended"
     ],
+    "root": true,
+    "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
@@ -18,14 +18,21 @@
         "sourceType": "module"
     },
     "plugins": [
+        "jest",
+        "no-for-of-loops",
+        "no-function-declare-after-return",
         "react"
     ],
     "rules": {
-        "indent": ["error", 4],
         "react/react-in-jsx-scope": "off",
-           "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-        "react/jsx-indent": ["error", 4],
-        "react/jsx-indent-props": ["error", 4]
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/ban-types": ["error",
+            {
+                "types": {
+                    "Function": false
+                }
+            }
+        ]
     },
     "settings": {
         "react": {
