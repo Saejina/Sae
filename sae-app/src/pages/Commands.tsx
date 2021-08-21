@@ -1,5 +1,7 @@
+import AppLayout from '../components/AppLayout';
+
 export function Commands(): JSX.Element {
-    return <div>Commands</div>;
+    return <AppLayout>Commands</AppLayout>;
 }
 
 export default Commands;

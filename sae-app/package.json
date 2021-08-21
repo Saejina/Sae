@@ -62,7 +62,7 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "lint": "eslint '*/**/*.{ts,tsx}' --quiet --fix",
+    "lint": "eslint '*/**/*.{ts,tsx}' --fix",
     "deploy": "serve -s -l 3333 build/"
   },
   "eslintConfig": {
