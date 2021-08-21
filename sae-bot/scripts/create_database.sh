@@ -1,9 +1,9 @@
-printf "=======================================================\n"
-printf "|                                                     |\n"
-printf "| \033[0;33mCreating MySQL database for SaeBot...\033[0m               |\n"
-printf "| \033[0;34mMake sure that you have MySQL or MariaDB installed.\033[0m |\n"
-printf "|                                                     |\n"
-printf "=======================================================\n"
+printf "==================================================================\n"
+printf "|                                                                |\n"
+printf "| \033[0;33mCreating and updating MySQL database for SaeBot...\033[0m             |\n"
+printf "| \033[0;34mMake sure that you have MySQL or MariaDB installed.\033[0m            |\n"
+printf "|                                                                |\n"
+printf "==================================================================\n"
 
 tmp=$(which mysql)
 if [ $? != 0 ]
