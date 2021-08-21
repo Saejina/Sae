@@ -11,6 +11,11 @@
         "sourceType": "module"
     },
     "rules": {
-        "indent": ["error", 4]
+        "indent": ["error", 4],
+        "max-len": "off",
+        "import/no-dynamic-require": "off",
+        "global-require": "off",
+        "no-restricted-syntax": "off",
+        "guard-for-in": "off"
     }
 }
