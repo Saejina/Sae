@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-      "lint": "eslint '*/**/*.js' --quiet --fix",
-      "db": "sh scripts/create_database.sh"
+    "lint": "eslint '*/**/*.js' --quiet --fix",
+    "db": "sh scripts/create_database.sh"
   },
   "author": "Havok",
   "license": "ISC",
@@ -17,6 +17,7 @@
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "require-all": "^3.0.0"
   }
 }
