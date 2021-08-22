@@ -1,24 +1,11 @@
 const mysql = require('mysql');
 
-console.log(process.env.MYSQL_USER);
-let connection;
-
 function setupDatabase() {
-    connection.query(`CREATE TABLE IF NOT EXISTS reactionroles (
-        id int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
-        server_id varchar(255) NOT NULL,
-        channel_id varchar(255) NOT NULL,
-        message_id varchar(255) NOT NULL,
-        emoji_id varchar(255) NOT NULL,
-        role_id varchar(255) NOT NULL
-    )`, (err) => {
-        if (err) throw err;
-    });
     connection.query(`CREATE TABLE IF NOT EXISTS platformUsers (
         id int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
         discord_id varchar(255) NOT NULL,
         email varchar(255) NOT NULL,
-        password varchar(255) NOT NULL
+        password varchar(255) NOT NULL,
     )`, (err) => {
         if (err) throw err;
     });
@@ -55,5 +42,3 @@ function handleDisconnect() {
     });
     global.database = connection;
 }
-
-handleDisconnect();
