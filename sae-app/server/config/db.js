@@ -9,7 +9,7 @@ function setupDatabase() {
         username varchar(255) NOT NULL,
         password varchar(255) NOT NULL
     )`, (err) => {
-        if (err) throw err;
+        if (err) throw err
     });
 }
 
@@ -31,13 +31,13 @@ function handleDisconnect() {
         console.log('[MYSQL] Connecting to database...');
         if (err) throw err;
         else {
-            console.log(`[MYSQL] Sucessfully connected to database !`);
-            setupDatabase()
+            console.log('[MYSQL] Sucessfully connected to database !');
+            setupDatabase();
         }
     });
     connection.on('error', (err) => {
         console.log(`[MYSQL][ERROR] Database error: ${err}`);
-        if (err.code === `PROTOCOL_CONNEXION_LOST`) handleDisconnect();
+        if (err.code === 'PROTOCOL_CONNEXION_LOST') handleDisconnect();
         else process.exit(1);
     });
     global.database = connection;

@@ -1,5 +1,6 @@
 import React, { useReducer, useEffect } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import Axios from 'axios';
 
 import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
@@ -7,6 +8,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import CardHeader from '@material-ui/core/CardHeader';
 import Button from '@material-ui/core/Button';
+
+Axios.defaults.withCredentials = true;
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -94,6 +97,7 @@ const reducer = (state: State, action: Action): State => {
     }
 };
 
+
 export function Login(): JSX.Element {
     const classes = useStyles();
     const [state, dispatch] = useReducer(reducer, initialState);
@@ -113,17 +117,22 @@ export function Login(): JSX.Element {
     }, [state.username, state.password]);
 
     const handleLogin = () => {
-        if (state.username === 'abc@email.com' && state.password === 'password') {
+        Axios.post('http://localhost:5000/login', {
+            username: state.username.trim(),
+            password: state.password.trim(),
+        }).then((response) => {
+            console.log(response.data);
             dispatch({
                 type: 'loginSuccess',
-                payload: 'Login Successfully',
-            });
-        } else {
+                payload: response.data.msg,
+            })
+        }).catch((err) => {
             dispatch({
                 type: 'loginFailed',
-                payload: 'Incorrect username or password',
-            });
-        }
+                payload: err.response.data.msg,
+            })
+            console.log(err);
+        })
     };
 
     const handleKeyPress = (event: React.KeyboardEvent) => {
@@ -191,6 +200,6 @@ export function Login(): JSX.Element {
             </Card>
         </form>
     );
-};
+}
 
 export default Login;

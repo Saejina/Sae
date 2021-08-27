@@ -13,8 +13,9 @@ start:
 	@yarn start
 
 clean:
-	@rm -f yarn-error.log
+	@find . -name '*.log' -delete
 	@rm -rf build
+	@find . -name '*\~' -delete
 
 format:
 	@printf "\033[0;33mFormatting sae-app files...\033[0m\n"

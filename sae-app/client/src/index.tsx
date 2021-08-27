@@ -5,7 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './custom.scss';
 import './index.css';
-require('./configs/db');
+//require('./configs/db');
 
 ReactDOM.render(
     <React.StrictMode>
