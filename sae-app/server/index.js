@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const {handleLogin} = require('./routes/login');
+const {handleLogin, isLoggedIn} = require('./routes/login');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -27,12 +27,18 @@ app.use(session({
     saveUninitialized: false,
     cookie: {
         expires: 60 * 60 * 24,
+        sameSite: "none",
+        secure: "auto"
     },
 }))
 
 app.post('/login', (req, res) => {
     return handleLogin(req, res);
-})
+});
+
+app.get('/login', (req, res) => {
+    return isLoggedIn(req, res);
+});
 
 app.listen(process.env.PORT, () => {
     console.log(`[SAE-APP]App listening on port ${process.env.PORT}`)

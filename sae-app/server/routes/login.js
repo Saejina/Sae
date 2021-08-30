@@ -1,6 +1,7 @@
 const {
-    compare
+    compare,
 } = require('bcryptjs');
+const token = require('../mware/token');
 
 exports.handleLogin = async function (req, res) {
     const { username } = req.body;
@@ -13,32 +14,29 @@ exports.handleLogin = async function (req, res) {
         } else if (results.length > 0) {
             const comparision = await compare(password, results[0].password);
             if (comparision) {
-                // const token = mware.generateToken({ username: username });
-                console.log("Login successful!");
-                req.session.user = results[0];
-                console.log(req.session.user);
-                res.status(200).send({msg: "Valid credentials !"});
+                const userToken = token.generate({ username });
+                const user = results[0];
+                req.session.user = user;
+                req.session.userToken = userToken;
+                res.status(200).send({ token: userToken, msg: 'Logged in !' });
             } else {
-                console.log("Login failed!");
                 res.status(400).send({ msg: 'Invalid credentials' });
             }
         } else {
-            console.log("Login error.");
-            res.status(400).send({ msg: 'Internal error' });
+            res.status(400).send({ msg: 'Invalid credentials' });
         }
     });
-}
+};
 
 exports.isLoggedIn = async function (req, res) {
-    if (req.session.user)
+    if (req.session.user && token.authenticate(req.session.userToken)) {
         res.send({
             loggedIn: true,
             user: {
                 username: req.session.user.username,
                 discord_id: req.session.user.discord_id,
                 id: req.session.user.id,
-            }
+            },
         });
-    else
-        res.send({loggedIn: false});
-}
+    } else res.send({ loggedIn: false });
+};

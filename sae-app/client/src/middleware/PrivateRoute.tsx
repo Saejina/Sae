@@ -1,24 +1,13 @@
 import React from 'react'
-import {Redirect, Route, RouteProps} from 'react-router-dom'
-import { isLoggedIn } from "./auth";
+import { RouteProps, Route, Redirect } from 'react-router'
+import isLoggedIn from './isLoggedIn'
 
-export function PrivateRoute({...props}: PrivateRouteProps): JSX.Element {
-    let status;
-    isLoggedIn().then((result) => { status = result });
-    console.log(status);
-    if (status) {
-        return (
-            <Route {...props} />
-        )
-    } else {
-        return (
-            <Redirect to="/login" />
-        )
-    }
+export function PrivateRoute({...routeProps}) {
+    return (
+        isLoggedIn() ? <Route {...routeProps} /> : <Redirect to='/' />
+    )
 }
 
-export interface PrivateRouteProps extends RouteProps {
-    path: string;
-}
+export interface PrivateRouteProps extends RouteProps {}
 
 export default PrivateRoute;

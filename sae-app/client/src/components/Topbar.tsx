@@ -1,6 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
+import { Button } from 'react-bootstrap';
+import LoginModal from './LoginModal';
+import isLoggedIn from '../middleware/isLoggedIn';
+import removeToken from '../middleware/removeToken';
 
 export function Topbar(): JSX.Element {
+    const [show, setShow] = useState(false);
+    const handleShow = () => !isLoggedIn() ? setShow(true) : removeToken() && window.location.reload(false);
+    const handleClose = () => setShow(false);
+    const btnLabel = isLoggedIn() ? "Logout" : "Login";
     return (
         <div className="flex border-b border-light bg-darker w-full h-16 justify-between items-center">
             <div className="w-full h-full flex items-center justify-center w-1/30 min-w-max ml-2">
@@ -8,11 +16,11 @@ export function Topbar(): JSX.Element {
                     <span className="text-primary text-2xl font-bold">Saejina</span>
                 </a>
             </div>
-            <div className="h-14 w-14">
-                <img
-                    src="https://thumbs.dreamstime.com/b/pink-fairytale-bird-paradise-elegant-plumage-flying-flapping-wings-179418217.jpg"
-                    className="object-contain rounded-full"
-                />
+            <div className="mr-2">
+                <Button color="primary" onClick={handleShow}>
+                    {btnLabel}
+                </Button>
+                <LoginModal show={show} onHide={handleClose} backdropClassName="bg-error" setShow={setShow} />
             </div>
         </div>
     );

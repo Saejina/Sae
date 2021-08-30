@@ -17,6 +17,7 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "@types/jest": "^27.0.1",
+    "@types/js-cookie": "^2.2.7",
     "@types/node": "^16.6.2",
     "@types/react": "^17.0.19",
     "@types/react-dom": "^17.0.9",
@@ -65,7 +66,7 @@
     "test": "craco test",
     "eject": "react-scripts eject",
     "lint": "eslint '*/**/*.{ts,tsx}' --fix",
-    "deploy": "serve -s -l 3333 build/"
+    "deploy": "serve -s -l 3000 build/"
   },
   "eslintConfig": {
     "extends": [
