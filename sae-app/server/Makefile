@@ -6,6 +6,7 @@ install:
 start:	host
 
 format:
+	@printf "\033[0;33mFormatting sae-app server files...\033[0m\n"
 	@yarn lint
 
 host:

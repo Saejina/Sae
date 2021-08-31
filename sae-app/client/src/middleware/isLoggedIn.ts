@@ -1,11 +1,9 @@
-import cleanLocalStorage from "./cleanLocalStorage";
+import cleanLocalStorage from './cleanLocalStorage';
 
-function isLoggedIn() {
+function isLoggedIn(): boolean {
     cleanLocalStorage();
-    if (!localStorage.getItem('saejinaToken'))
-        return false;
-    else
-        return true;
+    if (!localStorage.getItem('saejinaToken')) return false;
+    else return true;
 }
 
 export default isLoggedIn;

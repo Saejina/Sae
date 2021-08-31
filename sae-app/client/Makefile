@@ -18,7 +18,7 @@ clean:
 	@find . -name '*\~' -delete
 
 format:
-	@printf "\033[0;33mFormatting sae-app files...\033[0m\n"
+	@printf "\033[0;33mFormatting sae-app client files...\033[0m\n"
 	@yarn lint
 
 build:
