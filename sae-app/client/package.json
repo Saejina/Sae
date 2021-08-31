@@ -2,6 +2,7 @@
   "name": "sae-app",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:5000",
   "dependencies": {
     "@babel/core": "^7.15.0",
     "@babel/helper-create-regexp-features-plugin": "^7.14.5",

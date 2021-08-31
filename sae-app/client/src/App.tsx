@@ -7,7 +7,7 @@ import cleanLocalStorage from './middleware/cleanLocalStorage';
 function App(): JSX.Element {
     useEffect(() => {
         cleanLocalStorage();
-    }, []);
+    });
     return (
         <Router>
             <Switch>
