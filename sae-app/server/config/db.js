@@ -1,19 +1,8 @@
 const mysql = require('mysql');
 
-console.log(process.env.MYSQL_USER);
 let connection;
 
 function setupDatabase() {
-    connection.query(`CREATE TABLE IF NOT EXISTS reactionroles (
-        id int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
-        server_id varchar(255) NOT NULL,
-        channel_id varchar(255) NOT NULL,
-        message_id varchar(255) NOT NULL,
-        emoji_id varchar(255) NOT NULL,
-        role_id varchar(255) NOT NULL
-    )`, (err) => {
-        if (err) throw err;
-    });
     connection.query(`CREATE TABLE IF NOT EXISTS platformUsers (
         id int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
         discord_id varchar(255) NOT NULL,
@@ -40,11 +29,9 @@ function handleDisconnect() {
     });
     connection.connect((err) => {
         console.log('[MYSQL] Connecting to database...');
-        if (err) {
-            console.log(`[MYSQL][ERROR] Could not connect to database. Code: ${err}`);
-            setTimeout(handleDisconnect, 2000);
-        } else {
-            console.log('[MYSQL] Successfully connected to database !');
+        if (err) throw err;
+        else {
+            console.log('[MYSQL] Sucessfully connected to database !');
             setupDatabase();
         }
     });
