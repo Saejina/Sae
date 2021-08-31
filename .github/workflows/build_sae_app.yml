@@ -27,7 +27,6 @@ jobs:
           cd sae-app/server
           yarn
           yarn lint
-          yarn build
           cd ../client
           yarn
           yarn lint
