@@ -24,7 +24,10 @@ jobs:
 
       - name: Install packages, lint, build and test
         run: |
-          cd sae-app
+          cd sae-app/server
+          yarn
+          yarn lint
+          cd ../client
           yarn
           yarn lint
           yarn build
