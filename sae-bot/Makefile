@@ -13,7 +13,8 @@ start:
 	@yarn start
 
 clean:
-	@rm -f yarn-error.log
+	@find . -name '*.log' -delete
+	@find . -name '*\~' -delete
 
 format:
 	@printf "\033[0;33mFormatting sae-bot files...\033[0m\n"

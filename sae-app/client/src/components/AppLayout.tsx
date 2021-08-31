@@ -5,12 +5,13 @@ import { children } from '../types';
 
 export function AppLayout({ children }: AppLayoutProps): JSX.Element {
     const path = useLocation().pathname;
-    console.log(path);
     return (
-        <div className="bg-dark">
+        <div className="flex flex-col bg-dark">
             <Topbar></Topbar>
-            <Sidebar active={path}></Sidebar>
-            {children}
+            <div className="flex">
+                <Sidebar active={path}></Sidebar>
+                {children}
+            </div>
         </div>
     );
 }

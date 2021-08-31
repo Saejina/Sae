@@ -1,7 +1,8 @@
 import AppLayout from '../components/AppLayout';
+import { withRouter } from 'react-router-dom';
 
 export function Users(): JSX.Element {
     return <AppLayout>Users</AppLayout>;
 }
 
-export default Users;
+export default withRouter(Users);

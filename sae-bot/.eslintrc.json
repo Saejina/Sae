@@ -16,6 +16,7 @@
         "import/no-dynamic-require": "off",
         "global-require": "off",
         "no-restricted-syntax": "off",
-        "guard-for-in": "off"
+        "guard-for-in": "off",
+        "no-shadow": "off"
     }
 }
