@@ -3,7 +3,8 @@ all: install
 install:
 	@yarn install
 
-start:	host
+start:
+	@yarn start
 
 format:
 	@printf "\033[0;33mFormatting sae-app server files...\033[0m\n"
