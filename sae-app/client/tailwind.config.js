@@ -1,6 +1,6 @@
 module.exports = {
   purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: 'class', // or 'media' or false
   theme: {
     extend: {
       width: {
@@ -14,6 +14,7 @@ module.exports = {
       'warning': '#1f51ff',
       'danger': '#54254e',
       'light': '#d9c4d1',
+      'lighter': '#d8d0d5',
       'dark': '#393b63',
       'info': '#b026ff',
       'darker': '#31334d'
