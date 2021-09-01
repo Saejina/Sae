@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-exports.generate = (username) => jwt.sign(username, process.env.SECRET, { expiresIn: '24h' });
+exports.generate = (payload) => jwt.sign(payload, process.env.SECRET, { expiresIn: '24h' });
 
 exports.authenticate = function (token) {
     if (!token) return false;
@@ -8,4 +8,8 @@ exports.authenticate = function (token) {
         if (err) return false;
         return true;
     });
+};
+
+exports.decode = function (token) {
+    return jwt.decode(token, { json: true });
 };
