@@ -1,5 +1,5 @@
-export function refresh(force?: boolean): void {
-    window.location.reload(!!force);
+export function refresh(): void {
+    window.location.reload();
 }
 
 export default refresh;

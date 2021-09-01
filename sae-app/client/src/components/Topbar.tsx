@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Button, Image } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import LoginModal from './LoginModal';
-import AvatarDropdown from './AvatarDropdown';
+import AvatarOffcanvas from './AvatarOffcanvas';
 import isLoggedIn from '../middleware/isLoggedIn';
 import removeToken from '../middleware/removeToken';
 import refresh from '../utils';
@@ -24,7 +24,7 @@ export function Topbar({ data }: TopbarProps): JSX.Element {
                         {btnLabel}
                     </Button>
                 ) : (
-                    <AvatarDropdown
+                    <AvatarOffcanvas
                         image={
                             data.profilePic ||
                             'https://img1.freepng.fr/20171220/qgw/question-mark-png-5a3a52cf1f4c50.0294601315137717271282.jpg'
