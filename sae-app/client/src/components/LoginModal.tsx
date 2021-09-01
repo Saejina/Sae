@@ -6,6 +6,7 @@ import { Button } from 'react-bootstrap';
 import { ModalProps, Modal, Card } from 'react-bootstrap';
 import { ThemeProvider } from '@material-ui/styles';
 import { createTheme } from '@material-ui/core';
+import refresh from '../utils';
 
 Axios.defaults.withCredentials = true;
 
@@ -101,13 +102,13 @@ export function LoginModal({ show, setShow, ...modalProps }: LoginModalProps): J
             password: state.password.trim(),
         })
             .then((response) => {
-                console.log(response.data);
                 localStorage.setItem('saejinaToken', response.data.token);
                 dispatch({
                     type: 'loginSuccess',
                     payload: response.data.msg,
                 });
                 setShow(false);
+                refresh();
             })
             .catch((err) => {
                 dispatch({

@@ -2,6 +2,7 @@
   "name": "sae-app",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:5000",
   "dependencies": {
     "@babel/core": "^7.15.0",
     "@babel/helper-create-regexp-features-plugin": "^7.14.5",
@@ -50,7 +51,7 @@
     "prettier": "^2.3.2",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
-    "react-bootstrap": "^1.6.1",
+    "react-bootstrap": "^2.0.0-alpha.2",
     "react-dom": "^17.0.2",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
