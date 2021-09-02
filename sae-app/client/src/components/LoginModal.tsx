@@ -1,5 +1,6 @@
 import React, { useReducer, useEffect } from 'react';
 import Axios from 'axios';
+import clsx from 'clsx';
 
 import TextField from '@material-ui/core/TextField';
 import { Button } from 'react-bootstrap';
@@ -7,6 +8,7 @@ import { ModalProps, Modal, Card } from 'react-bootstrap';
 import { ThemeProvider } from '@material-ui/styles';
 import { createTheme } from '@material-ui/core';
 import refresh from '../utils';
+import isDark from '../middleware/isDark';
 
 Axios.defaults.withCredentials = true;
 
@@ -141,10 +143,13 @@ export function LoginModal({ show, setShow, ...modalProps }: LoginModalProps): J
     return (
         <ThemeProvider theme={theme}>
             <Modal show={show} {...modalProps} contentClassName="bg-darker">
-                <Modal.Header closeButton className="bg-darker text-light border-light">
+                <Modal.Header
+                    closeButton
+                    className={clsx(isDark() ? 'bg-darker text-light border-light' : 'bg-light text-dark border-dark')}
+                >
                     <Modal.Title>Login</Modal.Title>
                 </Modal.Header>
-                <Modal.Body className="bg-darker">
+                <Modal.Body className={clsx(isDark() ? 'bg-darker' : 'bg-light')}>
                     <form noValidate autoComplete="off">
                         <Card bg="lighter">
                             <Card.Body>
