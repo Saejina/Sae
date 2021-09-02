@@ -1,6 +1,6 @@
 const token = require('../mware/token');
 
-exports.get = (req, res) => {
+exports.getUser = (req, res) => {
     const userToken = req.query.token;
     if (!userToken) return res.status(200).send({ msg: 'No token provided' });
     if (req.session.user) {
@@ -24,6 +24,24 @@ exports.get = (req, res) => {
                 profilePic: user.avatarURL(),
             });
         }).catch((err) => { res.status(200).send({ msg: 'Internal server error' }); console.log(err); });
+    }
+    return res.status(200).send({ msg: 'You need to login first' });
+};
+
+exports.getServers = async (req, res) => {
+    const userToken = req.query.token;
+    if (!userToken) return res.status(200).send({ msg: 'No token provided' });
+    if (req.session.user) {
+        const Guilds = global.client.guilds.cache.map((guild) => (
+            { id: guild.id, name: guild.name, serverPic: guild.iconURL() }
+        ));
+        return res.status(200).send({ servers: Guilds });
+    }
+    if (token.authenticate(userToken)) {
+        const Guilds = global.client.guilds.cache.map((guild) => (
+            { id: guild.id, name: guild.name, serverPic: guild.iconURL() }
+        ));
+        return res.status(200).send({ servers: Guilds });
     }
     return res.status(200).send({ msg: 'You need to login first' });
 };

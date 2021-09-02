@@ -16,7 +16,7 @@ export function AvatarOffcanvas({ image, username }: AvatarModalProps): JSX.Elem
 
     return (
         <div className="flex items-center">
-            <button onClick={show ? handleClose : handleShow}>
+            <button onClick={show ? handleClose : handleShow} className="w-14">
                 <Image src={image} alt="PP" roundedCircle fluid className="h-14" />
             </button>
             <Offcanvas
