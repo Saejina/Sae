@@ -5,7 +5,10 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './custom.scss';
 import './index.css';
+import darkModeConfig from './configs/darkMode';
 //require('./configs/db');
+
+darkModeConfig();
 
 ReactDOM.render(
     <React.StrictMode>
