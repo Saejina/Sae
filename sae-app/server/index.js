@@ -56,8 +56,12 @@ app.get('/login', (req, res) => {
     return isLoggedIn(req, res);
 });
 
-app.get('/discord', (req, res) => {
-    return discord.get(req, res);
+app.get('/discord/user', (req, res) => {
+    return discord.getUser(req, res);
+});
+
+app.get('/discord/servers', (req, res) => {
+    return discord.getServers(req, res);
 })
 
 app.listen(process.env.PORT, () => {
