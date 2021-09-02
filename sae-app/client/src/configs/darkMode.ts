@@ -5,7 +5,6 @@ export function darkModeConfig(): void {
     } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
         theme = 'dark';
     }
-    console.log(theme);
     if (theme === 'dark') {
         document.documentElement.classList.add('dark');
     } else {
