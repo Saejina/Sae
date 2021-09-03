@@ -11,6 +11,15 @@ function setupDatabase() {
     )`, (err) => {
         if (err) throw err;
     });
+    connection.query(`CREATE TABLE IF NOT EXISTS platformPerms (
+        id int(11) NOT NULL REFERENCES platformUsers (id),
+        permissions json NOT NULL,
+        FOREIGN KEY (id)
+        REFERENCES platformUsers (id)
+        ON DELETE CASCADE
+    )`, (err) => {
+        if (err) throw err;
+    });
 }
 
 function handleDisconnect() {

@@ -3,17 +3,6 @@ const token = require('../mware/token');
 exports.getUser = (req, res) => {
     const userToken = req.query.token;
     if (!userToken) return res.status(200).send({ msg: 'No token provided' });
-    if (req.session.user) {
-        const discordId = req.session.user.discord_id;
-        return global.client.users.fetch(discordId).then((user) => {
-            if (!user) return res.status(200).send({ msg: 'User not found' });
-            return res.status(200).send({
-                username: user.username,
-                id: discordId,
-                profilePic: user.avatarURL(),
-            });
-        }).catch((err) => { res.status(200).send({ msg: 'Internal server error' }); console.log(err); });
-    }
     if (token.authenticate(userToken)) {
         const userInfo = token.decode(userToken);
         return global.client.users.fetch(userInfo.discordId).then((user) => {
@@ -31,12 +20,6 @@ exports.getUser = (req, res) => {
 exports.getServers = async (req, res) => {
     const userToken = req.query.token;
     if (!userToken) return res.status(200).send({ msg: 'No token provided' });
-    if (req.session.user) {
-        const Guilds = global.client.guilds.cache.map((guild) => (
-            { id: guild.id, name: guild.name, serverPic: guild.iconURL() }
-        ));
-        return res.status(200).send({ servers: Guilds });
-    }
     if (token.authenticate(userToken)) {
         const Guilds = global.client.guilds.cache.map((guild) => (
             { id: guild.id, name: guild.name, serverPic: guild.iconURL() }

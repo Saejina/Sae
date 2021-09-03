@@ -4,7 +4,7 @@ install:
 	@yarn install
 
 start:
-	@yarn start
+	@yarn host
 
 format:
 	@printf "\033[0;33mFormatting sae-app server files...\033[0m\n"
