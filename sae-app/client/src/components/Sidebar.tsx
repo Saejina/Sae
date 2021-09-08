@@ -12,8 +12,7 @@ const sidebarItems = [
     { title: 'Home', path: '/', Icon: HomeOutlinedIcon },
     { title: 'Users', path: '/users', Icon: PeopleAltOutlinedIcon },
     { title: 'Commands', path: '/commands', Icon: AssignmentOutlinedIcon },
-    { title: 'Permissions', path: '/permissions', Icon: AssignmentLateOutlinedIcon,
-    permission: "administrator"},
+    { title: 'Permissions', path: '/permissions', Icon: AssignmentLateOutlinedIcon, permission: 'administrator' },
 ];
 
 function Sidebar({ active, className }: SidebarProps): JSX.Element {
@@ -38,31 +37,31 @@ function Sidebar({ active, className }: SidebarProps): JSX.Element {
                                         {title}
                                     </Tooltip>
                                 }
-                        >
-                            <Nav.Link
-                                key={index}
-                                eventKey={'link-' + index}
-                                href={path}
-                                className={clsx(
-                                    'border-b w-full h-16 flex items-center justify-center',
-                                    isDark() ? 'border-light' : 'border-danger',
-                                )}
                             >
-                                <Icon
-                                    className={
-                                        active === path
-                                            ? isDark()
-                                                ? 'text-secondary'
-                                                : 'text-warning'
-                                            : isDark()
-                                            ? 'text-primary'
-                                            : 'text-success'
-                                    }
-                                />
-                            </Nav.Link>
-                        </OverlayTrigger>
+                                <Nav.Link
+                                    key={index}
+                                    eventKey={'link-' + index}
+                                    href={path}
+                                    className={clsx(
+                                        'border-b w-full h-16 flex items-center justify-center',
+                                        isDark() ? 'border-light' : 'border-danger',
+                                    )}
+                                >
+                                    <Icon
+                                        className={
+                                            active === path
+                                                ? isDark()
+                                                    ? 'text-secondary'
+                                                    : 'text-warning'
+                                                : isDark()
+                                                ? 'text-primary'
+                                                : 'text-success'
+                                        }
+                                    />
+                                </Nav.Link>
+                            </OverlayTrigger>
                         );
-                    else return <div key={"private-" + index}></div>
+                    else return <div key={'private-' + index}></div>;
                 })}
             </Nav>
         </div>

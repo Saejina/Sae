@@ -16,7 +16,7 @@ start-server:
 start-client:
 	@make -C client start
 
-start: start-server start-client
+start: host-server start-client
 
 
 format-server:

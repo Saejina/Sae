@@ -13,7 +13,9 @@ function setupDatabase() {
     });
     connection.query(`CREATE TABLE IF NOT EXISTS platformPerms (
         id int(11) NOT NULL REFERENCES platformUsers (id),
-        permissions json NOT NULL,
+        administrator BOOLEAN NOT NULL DEFAULT false,
+        community BOOLEAN NOT NULL DEFAULT false,
+        commands BOOLEAN NOT NULL DEFAULT false,
         FOREIGN KEY (id)
         REFERENCES platformUsers (id)
         ON DELETE CASCADE
