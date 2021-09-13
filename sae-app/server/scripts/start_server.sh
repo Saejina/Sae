@@ -1,6 +1,6 @@
 port=$(cat .env | grep 'PORT')
 port=${port:5}
-sh scripts/is_server_running.sh
+bash scripts/is_server_running.sh
 if [[ $? == 1 ]]
 then
     printf "\033[0;33mSomething is running on port ${port}. This might be our server.\n"

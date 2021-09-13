@@ -16,12 +16,10 @@ exports.handleLogin = async function (req, res) {
                 const comparision = await compare(password, results[0].password);
                 if (comparision) {
                     const userToken = token.generate({
+                        id: results[0].id,
                         username: results[0].username,
                         discordId: results[0].discord_id,
                     });
-                    const user = results[0];
-                    req.session.user = user;
-                    req.session.userToken = userToken;
                     res.status(200).send({ token: userToken, msg: 'Logged in !' });
                 } else {
                     res.status(400).send({ msg: 'Invalid credentials' });
@@ -33,13 +31,15 @@ exports.handleLogin = async function (req, res) {
 };
 
 exports.isLoggedIn = async function (req, res) {
-    if (req.session.user && token.authenticate(req.session.userToken)) {
+    const userToken = req.query.token;
+    if (token.authenticate(userToken)) {
+        const userInfo = token.decode(userToken);
         res.status(200).send({
             loggedIn: true,
             user: {
-                username: req.session.user.username,
-                discord_id: req.session.user.discord_id,
-                id: req.session.user.id,
+                username: userInfo.username,
+                discord_id: userInfo.discord_id,
+                id: userInfo.id,
             },
         });
     } else res.status(200).send({ loggedIn: false });

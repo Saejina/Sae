@@ -145,6 +145,7 @@ export function LoginModal({ show, setShow, ...modalProps }: LoginModalProps): J
             <Modal show={show} {...modalProps} contentClassName="bg-darker">
                 <Modal.Header
                     closeButton
+                    closeVariant={isDark() ? 'white' : undefined}
                     className={clsx(isDark() ? 'bg-darker text-light border-light' : 'bg-light text-dark border-dark')}
                 >
                     <Modal.Title>Login</Modal.Title>
