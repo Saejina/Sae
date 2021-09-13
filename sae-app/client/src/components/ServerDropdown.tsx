@@ -33,9 +33,11 @@ interface ServerTemplateProps {
 
 function ServerDropdown({ className }: ServerDropdownProps): JSX.Element {
     const discordServers = useDiscordServers();
-    const newopts = discordServers ? discordServers.map((server: ServerTemplateProps) => {
-        return { value: server, label: ServerTemplate(server) };
-    }) : [];
+    const newopts = discordServers
+        ? discordServers.map((server: ServerTemplateProps) => {
+              return { value: server, label: ServerTemplate(server) };
+          })
+        : [];
 
     return (
         <div className={clsx(className, 'w-64')}>

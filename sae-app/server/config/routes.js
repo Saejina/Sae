@@ -24,5 +24,4 @@ exports.create = (app) => {
     app.get('/perms/:id', (req, res) => perms.getById(req, res, req.params.id));
 
     app.get('/perms', (req, res) => perms.get(req, res));
-
 };

@@ -5,16 +5,17 @@ export default function setNewPermissions(
     community: boolean,
     commands: boolean,
     id: string,
-    setHelper: Function
+    setHelper: Function,
+    handleClose?: Function,
 ): void {
     axios
-        .get('http://localhost:5000/perms/edit/' + id, {params: {administrator, community, commands}})
+        .put('http://localhost:5000/perms/edit/' + id, { params: { administrator, community, commands } })
         .then(() => {
-            setHelper({err: false, msg: 'Changements sauvegardés.'})
+            setHelper({ err: false, msg: 'Changements sauvegardés.' });
+            handleClose && handleClose();
         })
         .catch((error) => {
             console.log(error);
-            setHelper({err: true, msg: "Une erreur s'est produite"})
-        })
-    console.log(administrator, community, commands, id);
+            setHelper({ err: true, msg: "Une erreur s'est produite" });
+        });
 }

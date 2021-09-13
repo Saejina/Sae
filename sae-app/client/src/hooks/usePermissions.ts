@@ -7,5 +7,5 @@ export default function usePermissions(id?: string): any {
     useEffect(() => {
         if (isLoggedIn()) getPermissions(setPermissions, id);
     }, [setPermissions]);
-    return permissions;
+    return [permissions, setPermissions];
 }

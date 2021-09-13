@@ -10,13 +10,13 @@ import usePermissions from '../hooks/usePermissions';
 
 const sidebarItems = [
     { title: 'Home', path: '/', Icon: HomeOutlinedIcon },
-    { title: 'Users', path: '/users', Icon: PeopleAltOutlinedIcon },
-    { title: 'Commands', path: '/commands', Icon: AssignmentOutlinedIcon },
+    { title: 'Users', path: '/users', Icon: PeopleAltOutlinedIcon, permission: 'community' },
+    { title: 'Commands', path: '/commands', Icon: AssignmentOutlinedIcon, permission: 'commands' },
     { title: 'Permissions', path: '/permissions', Icon: AssignmentLateOutlinedIcon, permission: 'administrator' },
 ];
 
 function Sidebar({ active, className }: SidebarProps): JSX.Element {
-    const permissions = usePermissions();
+    const [permissions] = usePermissions();
     return (
         <div
             className={clsx(
@@ -27,7 +27,10 @@ function Sidebar({ active, className }: SidebarProps): JSX.Element {
         >
             <Nav defaultActiveKey="/" className="flex flex-col items-center justify-center">
                 {sidebarItems.map(({ title, path, Icon, permission }, index) => {
-                    if (!permission || (permissions && permissions.includes(permission)))
+                    if (
+                        !permission ||
+                        (permissions && (permissions.includes(permission) || permissions.includes('administrator')))
+                    )
                         return (
                             <OverlayTrigger
                                 key={'right-tooltip-' + index}

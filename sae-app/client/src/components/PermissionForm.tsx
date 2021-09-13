@@ -4,7 +4,7 @@ import { FormControlLabel, FormHelperText, Checkbox } from '@material-ui/core';
 import isDark from '../middleware/isDark';
 import setNewPermissions from '../middleware/setNewPermissions';
 
-export function PermissionForm({ permissions, data }: PermissionFormProps): JSX.Element {
+export function PermissionForm({ permissions, data, handleClose }: PermissionFormProps): JSX.Element {
     const [administrator, setAdministrator] = useState(permissions.includes('administrator'));
     const [community, setCommunity] = useState(permissions.includes('community'));
     const [commands, setCommands] = useState(permissions.includes('commands'));
@@ -12,16 +12,16 @@ export function PermissionForm({ permissions, data }: PermissionFormProps): JSX.
     const handleAdministratorChange = (event: any, checked: boolean) => setAdministrator(checked);
     const handleCommunityChange = (event: any, checked: boolean) => setCommunity(checked);
     const handleCommandsChange = (event: any, checked: boolean) => setCommands(checked);
-    const [helperText, setHelperText] = useState({err: false, msg: ""});
+    const [helperText, setHelperText] = useState({ err: false, msg: '' });
 
-    const handlePermissionsChange = () => setNewPermissions(administrator, community, commands, data.platformId, setHelperText);
+    const handlePermissionsChange = () =>
+        setNewPermissions(administrator, community, commands, data.platformId, setHelperText, handleClose);
 
     const fields = [
         { label: 'Administrator', onChange: handleAdministratorChange, value: administrator },
         { label: 'Community', onChange: handleCommunityChange, value: community },
         { label: 'Commands', onChange: handleCommandsChange, value: commands },
     ];
-    console.log(permissions);
     return (
         <form noValidate autoComplete="off" className="flex flex-col">
             {fields.map((field, index: number) => {
@@ -41,7 +41,9 @@ export function PermissionForm({ permissions, data }: PermissionFormProps): JSX.
                     />
                 );
             })}
-            {helperText.msg && <FormHelperText className={"text-inherit"}>{helperText.msg}</FormHelperText>}
+            {helperText.msg && (
+                <FormHelperText className={isDark() ? 'text-light' : 'text-dark'}>{helperText.msg}</FormHelperText>
+            )}
             <Button variant="success" size="lg" className={'flex-grow w-full mt-4'} onClick={handlePermissionsChange}>
                 Valider
             </Button>
@@ -52,6 +54,7 @@ export function PermissionForm({ permissions, data }: PermissionFormProps): JSX.
 export interface PermissionFormProps {
     permissions: any[];
     data: any;
+    handleClose?: Function;
 }
 
 export default PermissionForm;

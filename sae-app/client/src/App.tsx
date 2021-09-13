@@ -14,8 +14,17 @@ function App(): JSX.Element {
         <ThemeProvider theme={theme}>
             <Router>
                 <Switch>
-                    {routes.map(({ path, page, secured }, index) => {
-                        if (secured) return <PrivateRoute key={index} path={path} component={page} exact />;
+                    {routes.map(({ path, page, secured, permission }, index) => {
+                        if (secured)
+                            return (
+                                <PrivateRoute
+                                    key={index}
+                                    path={path}
+                                    component={page}
+                                    exact
+                                    neededPermission={permission}
+                                />
+                            );
                         else return <Route key={index} path={path} component={page} exact />;
                     })}
                     <Redirect to="/404" />

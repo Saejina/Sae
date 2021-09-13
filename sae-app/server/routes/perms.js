@@ -52,5 +52,12 @@ exports.getById = (req, res, id) => {
 };
 
 exports.edit = (req, res, id) => {
-    res.status(200).send("");
-}
+    const newPerms = req.body.params;
+    global.database.query('UPDATE platformPerms set ? where id = ?', [newPerms, id], (err) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).send({ msg: 'Internal server error' });
+        }
+        return res.status(200).send({ msg: 'Permissions updated successfully' });
+    });
+};

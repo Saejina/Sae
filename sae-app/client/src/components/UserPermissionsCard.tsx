@@ -4,6 +4,7 @@ import { Image, Spinner, Modal } from 'react-bootstrap';
 import useDiscordData from '../hooks/useDiscordData';
 import usePermissions from '../hooks/usePermissions';
 import isDark from '../middleware/isDark';
+import getPermissions from '../middleware/getPermissions';
 import { createTheme, ThemeProvider } from '@material-ui/core';
 import PermissionForm from './PermissionForm';
 
@@ -14,14 +15,17 @@ const theme = createTheme({
     },
 });
 
-export function UserCard({ id, className }: UserCardProps): JSX.Element {
+export function UserPermissionsCard({ id, className }: UserPermissionsCardProps): JSX.Element {
     const discordData = useDiscordData(id);
     const [isLoading, setIsLoading] = useState(true);
-    const permissions = usePermissions(discordData.platformId);
+    const [permissions, setPermissions] = usePermissions(discordData.platformId);
     const [show, setShow] = useState(false);
 
     const handleShow = () => setShow(true);
-    const handleClose = () => setShow(false);
+    const handleClose = () => {
+        setShow(false);
+        getPermissions(setPermissions, discordData.platformId);
+    };
 
     useEffect(() => {
         if (discordData) setIsLoading(false);
@@ -52,7 +56,7 @@ export function UserCard({ id, className }: UserCardProps): JSX.Element {
                     </Modal.Header>
                     <Modal.Body className={clsx(isDark() ? 'bg-darker text-light' : 'bg-light text-dark')}>
                         {permissions ? (
-                            <PermissionForm permissions={permissions} data={discordData} />
+                            <PermissionForm permissions={permissions} data={discordData} handleClose={handleClose} />
                         ) : (
                             <Spinner animation="border" />
                         )}
@@ -63,9 +67,9 @@ export function UserCard({ id, className }: UserCardProps): JSX.Element {
     );
 }
 
-export interface UserCardProps {
+export interface UserPermissionsCardProps {
     id: string;
     className?: string;
 }
 
-export default UserCard;
+export default UserPermissionsCard;

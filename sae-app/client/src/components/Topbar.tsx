@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
-import { Button } from 'react-bootstrap';
+import { Button, Spinner } from 'react-bootstrap';
 import { Brightness4, Brightness7 } from '@material-ui/icons';
 import LoginModal from './LoginModal';
 import AvatarOffcanvas from './AvatarOffcanvas';
@@ -28,7 +28,7 @@ export function Topbar({ data, className }: TopbarProps): JSX.Element {
             className={clsx(
                 className,
                 'flex border-b  w-full h-16 justify-between items-center absolute',
-                isDark() ? 'bg-darker border-light' : 'bg-light border-danger',
+                isDark() ? 'bg-darker border-light text-light' : 'bg-light border-danger text-dark',
             )}
         >
             <div className="w-full h-full flex items-center min-w-max ml-2">
@@ -51,14 +51,10 @@ export function Topbar({ data, className }: TopbarProps): JSX.Element {
                     <Button color={isDark() ? 'primary' : 'success'} onClick={handleShow}>
                         {btnLabel}
                     </Button>
+                ) : data.profilePic ? (
+                    <AvatarOffcanvas image={data.profilePic} username={data.username} />
                 ) : (
-                    <AvatarOffcanvas
-                        image={
-                            data.profilePic ||
-                            'https://img1.freepng.fr/20171220/qgw/question-mark-png-5a3a52cf1f4c50.0294601315137717271282.jpg'
-                        }
-                        username={data.username}
-                    />
+                    <Spinner animation="border" />
                 )}
                 <LoginModal show={show} onHide={handleClose} backdropClassName="bg-error" setShow={setShow} />
             </div>
