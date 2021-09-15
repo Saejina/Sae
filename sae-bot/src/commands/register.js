@@ -43,7 +43,6 @@ async function addToDatabase(username, password, id, channel) {
 }
 
 module.exports = {
-    help: false,
     permissions: ['MANAGE_GUILD'],
     description: 'Crée votre compte sur la plateforme en ligne.',
     example: 's!register',

@@ -12,6 +12,9 @@ upgrade:
 start:
 	@yarn start
 
+host:
+	@yarn host
+
 clean:
 	@find . -name '*.log' -delete
 	@find . -name '*\~' -delete

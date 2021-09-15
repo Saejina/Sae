@@ -12,6 +12,7 @@
     },
     "rules": {
         "indent": ["error", 4],
+        "no-await-in-loop": "off",
         "max-len": "off",
         "import/no-dynamic-require": "off",
         "global-require": "off",

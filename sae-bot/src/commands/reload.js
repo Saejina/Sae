@@ -2,7 +2,6 @@ const Discord = require('discord.js');
 const reload = require('../functions/reloadCMD');
 
 module.exports = {
-    help: false,
     permissions: ['ADMINISTRATOR'],
     description: 'Reload les commandes.',
     example: 's!reload',
