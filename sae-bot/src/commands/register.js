@@ -1,6 +1,18 @@
 const { hash } = require('bcryptjs');
 const Discord = require('discord.js');
 
+async function setPerms(id, channel) {
+    return global.database.query('SELECT * from platformUsers where discord_id = ?', id, (err, results) => {
+        if (err) {
+            return console.log(err);
+        }
+        global.database.query('INSERT INTO platformPerms set ?', { id: results[0].id }, (err) => {
+            if (err) { console.log(err); }
+        });
+        return channel.send('Vous avez bien été ajouté(e) à la base de données.');
+    });
+}
+
 async function addToDatabase(username, password, id, channel) {
     const encryptedPassword = await hash(password, Number(process.env.SALTROUNDS));
     const user = {
@@ -24,15 +36,14 @@ async function addToDatabase(username, password, id, channel) {
                 if (err) {
                     return channel.send("Je n'ai pas réussi à t'ajouter à la base de données.");
                 }
-                return channel.send('Vous avez bien été ajouté(e) à la base de données.');
+                return setPerms(id, channel);
             });
         });
     });
 }
 
 module.exports = {
-    help: false,
-    permissions: ['ADMINISTRATOR'],
+    permissions: ['MANAGE_GUILD'],
     description: 'Crée votre compte sur la plateforme en ligne.',
     example: 's!register',
     async cmd(client, message) {

@@ -1,8 +1,12 @@
 const fs = require('fs');
 
 class Command {
-    constructor(base = '') {
-        this.c = base;
+    constructor(base = '', permissions = [], description = '', action = () => {}, example) {
+        this.base = base;
+        this.permissions = permissions;
+        this.description = description;
+        this.action = action;
+        this.example = example;
     }
 }
 
@@ -17,9 +21,9 @@ module.exports = {
 
             const cmdcache = require(`../commands/${f}`);
             const base = global.prefix + f.replace('.js', '');
-            const cmddatacache = new Command({
-                base, permissions: cmdcache.permissions, description: cmdcache.description, help: cmdcache.help, action: cmdcache.cmd,
-            });
+            const cmddatacache = new Command(
+                base, cmdcache.permissions, cmdcache.description, cmdcache.cmd, cmdcache.example,
+            );
             console.log(`${base} -> INITIALISÉ`);
             global.CommandList.set(base, cmddatacache);
             if (cmdcache.help === true) {

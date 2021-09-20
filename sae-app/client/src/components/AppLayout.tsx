@@ -14,7 +14,7 @@ export function AppLayout({ children, data }: AppLayoutProps): JSX.Element {
             <Topbar data={data} className="shadow-md" />
             <div className="flex mt-16">
                 <Sidebar active={path} className="shadow-md" />
-                <div className={clsx('mx-1 p-3', isDark() ? 'text-light' : 'text-dark')}>{children}</div>
+                <div className={clsx('mx-1 p-3 w-full h-full', isDark() ? 'text-light' : 'text-dark')}>{children}</div>
             </div>
         </div>
     );

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
-import { Button } from 'react-bootstrap';
+import { Button, Spinner } from 'react-bootstrap';
 import { Brightness4, Brightness7 } from '@material-ui/icons';
 import LoginModal from './LoginModal';
 import AvatarOffcanvas from './AvatarOffcanvas';
@@ -10,6 +10,7 @@ import getMode from '../middleware/getMode';
 import refresh from '../utils';
 import isDark from '../middleware/isDark';
 import changeMode from '../middleware/changeMode';
+import ServerDropdown from './ServerDropdown';
 
 export function Topbar({ data, className }: TopbarProps): JSX.Element {
     const [show, setShow] = useState(false);
@@ -27,7 +28,7 @@ export function Topbar({ data, className }: TopbarProps): JSX.Element {
             className={clsx(
                 className,
                 'flex border-b  w-full h-16 justify-between items-center absolute',
-                isDark() ? 'bg-darker border-light' : 'bg-light border-danger',
+                isDark() ? 'bg-darker border-light text-light' : 'bg-light border-danger text-dark',
             )}
         >
             <div className="w-full h-full flex items-center min-w-max ml-2">
@@ -38,6 +39,7 @@ export function Topbar({ data, className }: TopbarProps): JSX.Element {
                 </a>
             </div>
             <div className="mr-2 flex flex-row items-center space-x-4">
+                {isLoggedIn() && <ServerDropdown />}
                 <button onClick={handleChangeMode}>
                     {colorTheme === 'light' ? (
                         <Brightness4 className="text-dark" />
@@ -49,14 +51,10 @@ export function Topbar({ data, className }: TopbarProps): JSX.Element {
                     <Button color={isDark() ? 'primary' : 'success'} onClick={handleShow}>
                         {btnLabel}
                     </Button>
+                ) : data.profilePic ? (
+                    <AvatarOffcanvas image={data.profilePic} username={data.username} />
                 ) : (
-                    <AvatarOffcanvas
-                        image={
-                            data.profilePic ||
-                            'https://img1.freepng.fr/20171220/qgw/question-mark-png-5a3a52cf1f4c50.0294601315137717271282.jpg'
-                        }
-                        username={data.username}
-                    />
+                    <Spinner animation="border" />
                 )}
                 <LoginModal show={show} onHide={handleClose} backdropClassName="bg-error" setShow={setShow} />
             </div>

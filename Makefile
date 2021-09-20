@@ -1,4 +1,4 @@
-all: install
+all: all-sae-app all-sae-bot
 
 
 install: install-sae-app install-sae-bot

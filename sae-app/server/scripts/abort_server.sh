@@ -1,4 +1,4 @@
-sh scripts/is_server_running.sh
+bash scripts/is_server_running.sh
 
 if [[ $? == 1 ]]
 then
