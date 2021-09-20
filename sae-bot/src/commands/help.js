@@ -46,7 +46,7 @@ module.exports = {
     name: 'help',
     description: 'Montre toutes les commandes disponibles',
     permissions: [],
-    example: 'q!help',
+    example: 's!help',
     cmd(client, message) {
         const content = getHelpContent(message.member);
         createPagedHelpEmbed(message, content);
