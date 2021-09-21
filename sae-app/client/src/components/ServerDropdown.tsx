@@ -27,12 +27,16 @@ function ServerTemplate({ name, serverPic }: ServerTemplateProps) {
 }
 
 interface ServerTemplateProps {
+    id: string;
     name: string;
     serverPic?: string;
 }
 
-function ServerDropdown({ className }: ServerDropdownProps): JSX.Element {
+function ServerDropdown({ className, setServer }: ServerDropdownProps): JSX.Element {
     const discordServers = useDiscordServers();
+    const handleChange = (value: any) => {
+        setServer(value.value);
+    };
     const newopts = discordServers
         ? discordServers.map((server: ServerTemplateProps) => {
               return { value: server, label: ServerTemplate(server) };
@@ -40,14 +44,20 @@ function ServerDropdown({ className }: ServerDropdownProps): JSX.Element {
         : [];
 
     return (
-        <div className={clsx(className, 'w-64')}>
-            <Select options={newopts} isSearchable={false} />
+        <div className={clsx(className)}>
+            <Select
+                options={newopts}
+                isSearchable={false}
+                onChange={handleChange}
+                placeholder="Selectionnez un serveur ..."
+            />
         </div>
     );
 }
 
 export interface ServerDropdownProps {
     className?: string;
+    setServer: Function;
 }
 
 export default ServerDropdown;

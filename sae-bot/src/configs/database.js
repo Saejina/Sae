@@ -1,6 +1,5 @@
 const mysql = require('mysql');
 
-console.log(process.env.MYSQL_USER);
 let connection;
 
 function setupDatabase() {
@@ -36,10 +35,10 @@ function setupDatabase() {
 }
 
 function handleDisconnect() {
-    console.log('[MYSQL] Setting up database...');
+    console.log('[SAE-BOT][MYSQL] Setting up database...');
     if (!process.env.DB_HOST || !process.env.MYSQL_USER
         || !process.env.DB_PASSWORD || !process.env.DB_NAME) {
-        console.log('[MYSQL][ERROR] Could not find database informations, '
+        console.log('[SAE-BOT][MYSQL][ERROR] Could not find database informations, '
         + 'make sure your .env file follows the example.');
         process.exit(1);
     }
@@ -50,17 +49,17 @@ function handleDisconnect() {
         database: process.env.DB_NAME,
     });
     connection.connect((err) => {
-        console.log('[MYSQL] Connecting to database...');
+        console.log('[SAE-BOT][MYSQL] Connecting to database...');
         if (err) {
-            console.log(`[MYSQL][ERROR] Could not connect to database. Code: ${err}`);
+            console.log(`[SAE-BOT][MYSQL][ERROR] Could not connect to database. Code: ${err}`);
             setTimeout(handleDisconnect, 2000);
         } else {
-            console.log('[MYSQL] Successfully connected to database !');
+            console.log('[SAE-BOT][MYSQL] Successfully connected to database !');
             setupDatabase();
         }
     });
     connection.on('error', (err) => {
-        console.log(`[MYSQL][ERROR] Database error: ${err}`);
+        console.log(`[SAE-BOT][MYSQL][ERROR] Database error: ${err}`);
         if (err.code === 'PROTOCOL_CONNEXION_LOST') handleDisconnect();
         else process.exit(1);
     });
