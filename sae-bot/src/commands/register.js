@@ -1,5 +1,6 @@
 const { hash } = require('bcryptjs');
 const Discord = require('discord.js');
+const { createHelpEmbed } = require('../utils/helpEmbed');
 
 async function setPerms(id, channel) {
     return global.database.query('SELECT * from platformUsers where discord_id = ?', id, (err, results) => {
@@ -45,9 +46,13 @@ async function addToDatabase(username, password, id, channel) {
 module.exports = {
     permissions: ['MANAGE_GUILD'],
     description: 'Crée votre compte sur la plateforme en ligne.',
-    example: 's!register',
+    example: 's!register (la suite se passe en dm)',
     async cmd(client, message) {
-        message.author.createDM().then((channel) => {
+        const args = message.content.split(' ').slice(1);
+        if (args[0] === 'help') {
+            return createHelpEmbed(this, message);
+        }
+        return message.author.createDM().then((channel) => {
             channel.send("Quel nom d'utilisateur voulez vous utiliser pour vous connecter ?").then((msg) => {
                 const filter = (mess) => !mess.author.bot;
                 channel.awaitMessages({

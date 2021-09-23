@@ -34,7 +34,6 @@ function createPagedHelpEmbed(message, cont) {
             .setColor(global.mainColor)
             .setTitle('Section d\'aide');
         ele.forEach((ele2) => {
-            console.log(ele2);
             embed.addFields({ name: ele2.name, value: `${ele2.desc}\nExemple : ${ele2.example}` });
         });
         embeds.push(embed);
@@ -43,7 +42,6 @@ function createPagedHelpEmbed(message, cont) {
 }
 
 module.exports = {
-    name: 'help',
     description: 'Montre toutes les commandes disponibles',
     permissions: [],
     example: 's!help',

@@ -64,7 +64,7 @@ function handleCollectedReactions(collected, msg, args, author) {
         .setAuthor('Sondage 📝')
         .setThumbnail(typeof (author.avatarURL) === 'function' ? author.avatarURL() : author.avatarURL)
         .setDescription(args[0])
-        .setFooter(author.username)
+        .setFooter(author.username, global.client.user.avatarURL())
         .setColor(global.mainColor)
         .setTimestamp()
         .addField('Il y a eu le plus de votes pour:', '\u200b');
@@ -91,7 +91,7 @@ module.exports = {
         const embed = new Discord.MessageEmbed()
             .setAuthor('Sondage 📝')
             .setDescription(args[0])
-            .setFooter(message.author.username)
+            .setFooter(message.author.username, global.client.user.avatarURL())
             .setColor(global.mainColor)
             .setThumbnail(typeof (message.author.avatarURL) === 'function' ? message.author.avatarURL() : message.author.avatarURL)
             .setTimestamp();
