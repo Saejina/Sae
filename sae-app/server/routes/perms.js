@@ -38,13 +38,11 @@ exports.get = (req, res) => {
 };
 
 exports.getById = (req, res, id) => {
-    console.log(`id:${id}`);
     return global.database.query('SELECT * FROM platformPerms where id = ?', [id],
         (err, users) => {
             if (err) { return res.status(500).send({ msg: 'Internal server error' }); }
             if (users.length > 0) {
                 const perms = permsToString(users[0]);
-                console.log(perms);
                 return res.status(200).send({ permissions: perms });
             }
             return res.status(200).send({ permissions: [] });
