@@ -10,13 +10,12 @@ module.exports = (client, message) => {
         if (global.CommandList.has(global.prefix + content)) {
             if (!message.member.permissions.has(global.CommandList.get(global.prefix + content).permissions)) {
                 setTimeout(() => message.delete(), 3000);
-                message.reply("Tu n'as pas les permissions nécessaires pour utiliser cette commande.").then((msg) => setTimeout(() => msg.delete(), 3000));
+                message.reply("tu n'as pas les permissions nécessaires pour utiliser cette commande.").then((msg) => setTimeout(() => msg.delete(), 3000));
             } else {
                 global.CommandList.get(global.prefix + content).action(client, message);
             }
         } else {
             const CMDLIST = [];
-            console.log(global.CMDLISTINFO);
             global.CMDLISTINFO.forEach((cmdinfo) => {
                 CMDLIST.push(cmdinfo.name);
             });
