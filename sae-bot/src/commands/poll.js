@@ -62,7 +62,7 @@ function handleCollectedReactions(collected, msg, args, author) {
     const winners = computeMostCollected(collected);
     const endEmbed = new Discord.MessageEmbed()
         .setAuthor('Sondage 📝')
-        .setThumbnail(author.avatarURL())
+        .setThumbnail(typeof (author.avatarURL) === 'function' ? author.avatarURL() : author.avatarURL)
         .setDescription(args[0])
         .setFooter(author.username)
         .setColor(global.mainColor)
@@ -79,10 +79,12 @@ module.exports = {
     description: 'Crée un nouveau sondage. Respectez la mise en page ci-dessous (guillemets)',
     example: 's!poll "Qui suis-je ?" "Quelqu\'un" "Personne" 2min20s',
     async cmd(client, message) {
+        console.log(message);
         const content = message.content.split(' ').slice(1).join(' ');
         const rawArgs = getPollArgs(content);
         const args = rawArgs.filter((arg) => arg.length > 0 && arg);
         const time = parse(args[args.length - 1]);
+        const channel = await client.channels.fetch(message.channel.id);
         if (time !== null) {
             args.pop();
         }
@@ -91,10 +93,10 @@ module.exports = {
             .setDescription(args[0])
             .setFooter(message.author.username)
             .setColor(global.mainColor)
-            .setThumbnail(message.author.avatarURL())
+            .setThumbnail(typeof (message.author.avatarURL) === 'function' ? message.author.avatarURL() : message.author.avatarURL)
             .setTimestamp();
         args.slice(1).map((arg, index) => embed.addField(`Option   ${indexMappings[index]}`, arg));
-        message.channel.send({ embeds: [embed] }).then((msg) => {
+        channel.send({ embeds: [embed] }).then((msg) => {
             for (let i = 0; i < args.length - 1; i += 1) {
                 msg.react(indexMappings[i]);
             }

@@ -9,7 +9,9 @@ export default function setNewPermissions(
     handleClose?: Function,
 ): void {
     axios
-        .put('http://localhost:5000/perms/edit/' + id, { params: { administrator, community, commands } })
+        .put(process.env.REACT_APP_API_ADDRESS + '/perms/edit/' + id, {
+            params: { administrator, community, commands },
+        })
         .then(() => {
             setHelper({ err: false, msg: 'Changements sauvegardés.' });
             handleClose && handleClose();
