@@ -10,7 +10,6 @@ import getMode from '../middleware/getMode';
 import refresh from '../utils';
 import isDark from '../middleware/isDark';
 import changeMode from '../middleware/changeMode';
-import ServerDropdown from './ServerDropdown';
 
 export function Topbar({ data, className }: TopbarProps): JSX.Element {
     const [show, setShow] = useState(false);
@@ -39,7 +38,6 @@ export function Topbar({ data, className }: TopbarProps): JSX.Element {
                 </a>
             </div>
             <div className="mr-2 flex flex-row items-center space-x-4">
-                {isLoggedIn() && <ServerDropdown />}
                 <button onClick={handleChangeMode}>
                     {colorTheme === 'light' ? (
                         <Brightness4 className="text-dark" />

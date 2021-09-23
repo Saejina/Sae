@@ -57,3 +57,21 @@ exports.getIds = (req, res) => {
         return res.status(200).send(results);
     });
 };
+
+exports.getChannels = (req, res, id) => {
+    const userToken = req.query.token;
+    if (!userToken) return res.status(200).send({ msg: 'No token provided' });
+    if (token.authenticate(userToken)) {
+        return global.client.guilds.fetch(id).then((guild) => {
+            const Channels = guild.channels.cache.map((channel) => {
+                if (channel.isText()) {
+                    return { id: channel.id, name: channel.name, category: channel.parent ? channel.parent.name : '' };
+                } return null;
+            });
+            return res.status(200).send({
+                channels: Channels.filter((channel) => channel !== null),
+            });
+        });
+    }
+    return res.status(200).send({ msg: 'You need to login first' });
+};
