@@ -1,4 +1,6 @@
+const getArgs = require('../utils/getArgs');
 const { createHelpEmbed } = require('../utils/helpEmbed');
+const messageEmbed = require('../utils/messageEmbed');
 
 function createMessage(message) {
     const content = message.content.split(' ').slice(1).join(' ');
@@ -19,16 +21,15 @@ function createMessage(message) {
 }
 
 module.exports = {
-    name: 'annonce',
     description: 'Envoie le message de votre choix dans le channel de votre choix en mentionnant `@everyone`',
     permissions: ['ADMINISTRATOR'],
-    example: 's!annonce Mon message :3',
+    example: '`s!annonce` Mon message :3',
     cmd(client, message) {
-        const args = message.content.split(' ').slice(1);
+        const args = getArgs(message.content);
         if ((args.length === 0 && !message.attachments.first() && !message.stickers.first() && message.embeds.length === 0) || args[0] === 'help') {
             return createHelpEmbed(this, message);
         }
-        message.reply("tag ou donne l'ID du channel dans lequel tu veux poster le message");
+        message.reply(messageEmbed(this, "Tag ou donne l'ID du channel dans lequel tu veux poster le message"));
         const filter = (m) => m.author.id === message.author.id;
         return message.channel.awaitMessages({
             filter, max: 1, time: 120000, erros: ['time'],
@@ -37,7 +38,7 @@ module.exports = {
             if (typeof channel === 'string') {
                 channel = message.channel.guild.channels.cache.get(channel);
             }
-            if (!channel) { return (message.channel.send("Je n'ai pas trouvé ce salon.")); }
+            if (!channel) { return (message.channel.send(messageEmbed(this, "Je n'ai pas trouvé ce salon."))); }
             return channel.send(createMessage(message));
         });
     },

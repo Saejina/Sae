@@ -1,6 +1,7 @@
 const { hash } = require('bcryptjs');
 const Discord = require('discord.js');
 const { createHelpEmbed } = require('../utils/helpEmbed');
+const messageEmbed = require('../utils/messageEmbed');
 
 async function setPerms(id, channel) {
     return global.database.query('SELECT * from platformUsers where discord_id = ?', id, (err, results) => {
@@ -45,21 +46,21 @@ async function addToDatabase(username, password, id, channel) {
 
 module.exports = {
     permissions: ['MANAGE_GUILD'],
-    description: 'Crée votre compte sur la plateforme en ligne.',
-    example: 's!register (la suite se passe en dm)',
+    description: 'Crée votre compte sur la plateforme en ligne',
+    example: '`s!register` (la suite se passe en dm)',
     async cmd(client, message) {
         const args = message.content.split(' ').slice(1);
         if (args[0] === 'help') {
             return createHelpEmbed(this, message);
         }
         return message.author.createDM().then((channel) => {
-            channel.send("Quel nom d'utilisateur voulez vous utiliser pour vous connecter ?").then((msg) => {
+            channel.send(messageEmbed(this, "Quel nom d'utilisateur voulez vous utiliser pour vous connecter ?")).then((msg) => {
                 const filter = (mess) => !mess.author.bot;
                 channel.awaitMessages({
                     filter, max: 1, time: 60000, errors: ['time'],
                 }).then((collected) => {
                     const username = collected.first().content;
-                    channel.send('Quel mot de passe voulez vous utiliser ? (Vous pouvez supprimer le message une fois le mot de passe recupéré).').catch((err) => { console.log(err); });
+                    channel.send(messageEmbed(this, 'Quel mot de passe voulez vous utiliser ? (Vous pouvez supprimer le message une fois le mot de passe recupéré).')).catch((err) => { console.log(err); });
                     channel.awaitMessages({
                         filter, max: 1, time: 60000, errors: ['time'],
                     }).then((collected) => {
@@ -98,15 +99,15 @@ module.exports = {
                                         addToDatabase(username, password, message.author.id, channel);
                                         return setTimeout(() => mess.delete(), 10000);
                                     }
-                                    channel.send("J'annule la procédure.");
+                                    channel.send(messageEmbed(this, "J'annule la procédure."));
                                     return setTimeout(() => mess.delete(), 10000);
                                 });
                             })
-                            .catch((err) => { console.log(err); channel.send("Votre demande d'enregistrement est annulée."); });
+                            .catch((err) => { console.log(err); channel.send(messageEmbed(this, "Votre demande d'enregistrement est annulée.")); });
                     });
                 }).catch((err) => {
                     console.log(err);
-                    return channel.send("Votre demande d'enregistrement est annulée.");
+                    return channel.send(messageEmbed(this, "Votre demande d'enregistrement est annulée."));
                 });
             });
         });

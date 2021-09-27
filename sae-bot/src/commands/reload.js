@@ -3,8 +3,8 @@ const reload = require('../functions/reloadCMD');
 
 module.exports = {
     permissions: ['ADMINISTRATOR'],
-    description: 'Reload les commandes.',
-    example: 's!reload',
+    description: 'Recharge les commandes',
+    example: '`s!reload`',
     cmd(client, message) {
         const embed = new Discord.MessageEmbed()
             .setColor(global.mainColor)

@@ -77,9 +77,8 @@ function handleCollectedReactions(collected, msg, args, author) {
 module.exports = {
     permissions: [],
     description: 'Crée un nouveau sondage. Respectez la mise en page ci-dessous (guillemets)',
-    example: 's!poll "Qui suis-je ?" "Quelqu\'un" "Personne" 2min20s',
+    example: '`s!poll` "Qui suis-je ?" "Quelqu\'un" "Personne" 2min20s',
     async cmd(client, message) {
-        console.log(message);
         const content = message.content.split(' ').slice(1).join(' ');
         const rawArgs = getPollArgs(content);
         const args = rawArgs.filter((arg) => arg.length > 0 && arg);
