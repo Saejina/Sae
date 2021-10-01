@@ -1,5 +1,5 @@
 const getArgs = require('../utils/getArgs');
-const { createHelpEmbed } = require('../utils/helpEmbed');
+const createHelpEmbed = require('../utils/createHelpEmbed');
 const messageEmbed = require('../utils/messageEmbed');
 
 function createMessage(message) {

@@ -1,6 +1,6 @@
 const { hash } = require('bcryptjs');
 const Discord = require('discord.js');
-const { createHelpEmbed } = require('../utils/helpEmbed');
+const createHelpEmbed = require('../utils/createHelpEmbed');
 const messageEmbed = require('../utils/messageEmbed');
 
 async function setPerms(id, channel) {
