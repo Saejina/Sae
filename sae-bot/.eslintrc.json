@@ -18,6 +18,7 @@
         "global-require": "off",
         "no-restricted-syntax": "off",
         "guard-for-in": "off",
-        "no-shadow": "off"
+        "no-shadow": "off",
+        "no-bitwise": "off"
     }
 }

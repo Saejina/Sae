@@ -3,16 +3,6 @@ const mysql = require('mysql');
 let connection;
 
 function setupDatabase() {
-    connection.query(`CREATE TABLE IF NOT EXISTS reactionroles (
-        id int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
-        server_id varchar(255) NOT NULL,
-        channel_id varchar(255) NOT NULL,
-        message_id varchar(255) NOT NULL,
-        emoji_id varchar(255) NOT NULL,
-        role_id varchar(255) NOT NULL
-    )`, (err) => {
-        if (err) throw err;
-    });
     connection.query(`CREATE TABLE IF NOT EXISTS platformUsers (
         id int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
         discord_id varchar(255) NOT NULL,
@@ -47,6 +37,7 @@ function handleDisconnect() {
         user: process.env.MYSQL_USER,
         password: process.env.DB_PASSWORD,
         database: process.env.DB_NAME,
+        charset: 'utf8mb4',
     });
     connection.connect((err) => {
         console.log('[SAE-BOT][MYSQL] Connecting to database...');
