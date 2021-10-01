@@ -37,17 +37,15 @@ exports.get = (req, res) => {
     return res.status(200).send({ msg: 'You need to login first' });
 };
 
-exports.getById = (req, res, id) => {
-    return global.database.query('SELECT * FROM platformPerms where id = ?', [id],
-        (err, users) => {
-            if (err) { return res.status(500).send({ msg: 'Internal server error' }); }
-            if (users.length > 0) {
-                const perms = permsToString(users[0]);
-                return res.status(200).send({ permissions: perms });
-            }
-            return res.status(200).send({ permissions: [] });
-        });
-};
+exports.getById = (req, res, id) => global.database.query('SELECT * FROM platformPerms where id = ?', [id],
+    (err, users) => {
+        if (err) { return res.status(500).send({ msg: 'Internal server error' }); }
+        if (users.length > 0) {
+            const perms = permsToString(users[0]);
+            return res.status(200).send({ permissions: perms });
+        }
+        return res.status(200).send({ permissions: [] });
+    });
 
 exports.edit = (req, res, id) => {
     const newPerms = req.body.params;
