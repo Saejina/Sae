@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const getArgs = require('../utils/getArgs');
-const { createHelpEmbed } = require('../utils/helpEmbed');
+const createHelpEmbed = require('../utils/createHelpEmbed');
 const messageEmbed = require('../utils/messageEmbed');
 const manip = require('../utils/jsonManip');
 const roleInMessage = require('../utils/roleInMessage');

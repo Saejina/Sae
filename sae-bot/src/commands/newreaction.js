@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { O_CREAT, O_WRONLY } = require('constants');
-const { createHelpEmbed } = require('../utils/helpEmbed');
+const createHelpEmbed = require('../utils/createHelpEmbed');
 const messageEmbed = require('../utils/messageEmbed');
 const getEmoji = require('../utils/getEmoji');
 const getArgs = require('../utils/getArgs');
