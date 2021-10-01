@@ -10,7 +10,7 @@ const roleInMessage = require('../utils/roleInMessage');
 const emojiInMessage = require('../utils/emojiInMessage');
 
 function addReactToDatabase(message, role, emoji, channel, cmd) {
-    const pathToJson = path.join(__dirname, `../reactionroles/${message.id}.json`);
+    const pathToJson = path.join(__dirname, `../data/reactionroles/${message.id}.json`);
     if (!fs.existsSync(pathToJson)) {
         return fs.open(pathToJson, O_CREAT | O_WRONLY, (err, fd) => {
             if (err) { console.log(`[SAE-BOT][ERROR] ${err}`); return channel.send(messageEmbed(cmd, "Je n'ai pas pu ajouter le message à la base de données.")); }

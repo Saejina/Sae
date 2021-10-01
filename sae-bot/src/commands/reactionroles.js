@@ -32,7 +32,7 @@ module.exports = {
         if (!global.client.guilds.cache.has(guildId)) return message.reply(messageEmbed(this, "Je n'ai pas trouvé le serveur."));
         const embeds = [];
         const files = requireAll({
-            dirname: `${__dirname}/../reactionroles`,
+            dirname: `${__dirname}/../data/reactionroles`,
             filter: /^(?!-)(.+)\.json$/,
         });
         const keys = Object.keys(files);

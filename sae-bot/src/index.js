@@ -4,8 +4,16 @@ require('./configs/database');
 const Discord = require('discord.js');
 const fs = require('fs');
 
-if (!fs.existsSync(`${__dirname}/reactionroles`)) {
-    fs.mkdirSync(`${__dirname}/reactionroles`);
+if (!fs.existsSync(`${__dirname}/data`)) {
+    fs.mkdirSync(`${__dirname}/data`);
+}
+
+if (!fs.existsSync(`${__dirname}/data/reactionroles`)) {
+    fs.mkdirSync(`${__dirname}/data/reactionroles`);
+}
+
+if (!fs.existsSync(`${__dirname}/data/cache`)) {
+    fs.mkdirSync(`${__dirname}/data/cache`);
 }
 
 const client = new Discord.Client({ intents: ['GUILD_MESSAGES', 'GUILD_MEMBERS', 'GUILD_MESSAGE_REACTIONS', 'DIRECT_MESSAGES', 'DIRECT_MESSAGE_REACTIONS', 'GUILDS'] });

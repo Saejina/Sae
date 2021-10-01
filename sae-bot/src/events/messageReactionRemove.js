@@ -3,7 +3,7 @@ const requireAll = require('require-all');
 module.exports = (client, reaction, author) => {
     if (author.bot) { return; }
     const files = requireAll({
-        dirname: `${__dirname}/../reactionroles`,
+        dirname: `${__dirname}/../data/reactionroles`,
         filter: /^(?!-)(.+)\.json$/,
     });
     const keys = Object.keys(files);
