@@ -12,6 +12,6 @@ then
     exit 1
 fi
 
-sudo mysql -e "CREATE USER IF NOT EXISTS 'saejina'@'localhost' IDENTIFIED BY 'SaejinaDBPWD:)';"
+sudo mysql -e "CREATE USER IF NOT EXISTS 'saejina'@'localhost' IDENTIFIED BY 'SaejinaDBPWD69:)';"
 sudo mysql -e "CREATE DATABASE IF NOT EXISTS saejinaDB;"
 sudo mysql -e "GRANT ALL PRIVILEGES ON saejinaDB.* TO 'saejina'@'localhost';"
