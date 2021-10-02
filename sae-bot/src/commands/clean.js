@@ -9,14 +9,10 @@ module.exports = {
     cmd(client, message) {
         const args = getArgs(message.content);
         if (args.length === 0 || args[0] === 'help') { return createHelpEmbed(this, message); }
-        var nb = Number(args[0]);
-        message.channel.bulkDelete(nb).then((msgs) => {
-            return message.channel.send(messageEmbed(this, `J'ai supprimé ${msgs.size} messages.`)).then((msg) => {
-                return setTimeout(() => msg.delete(), 3000);
-            })
-        }).catch((err) => {
+        const nb = Number(args[0]);
+        return message.channel.bulkDelete(nb).then((msgs) => message.channel.send(messageEmbed(this, `J'ai supprimé ${msgs.size} messages.`)).then((msg) => setTimeout(() => msg.delete(), 3000))).catch((err) => {
             console.log(`[SAE-BOT][ERROR] ${err}`);
-            return message.channel.send(messageEmbed(this, "Une erreur est survenue."));
-        })
+            return message.channel.send(messageEmbed(this, 'Une erreur est survenue.'));
+        });
     },
 };
