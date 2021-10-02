@@ -26,7 +26,7 @@ function removeReaction(message, removed, channel, cmd) {
 }
 
 function removeReactFromDatabase(message, role, channel, cmd) {
-    const pathToJson = path.join(__dirname, `../reactionroles/${message.id}.json`);
+    const pathToJson = path.join(__dirname, `../data/reactionroles/${message.id}.json`);
     if (!fs.existsSync(pathToJson)) {
         return channel.send(messageEmbed(cmd, 'Le message ne se trouve pas dans la base de données.'));
     }

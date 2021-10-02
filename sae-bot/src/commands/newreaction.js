@@ -14,7 +14,7 @@ async function createReactionMessage(role, reaction, channel, message, cmd) {
     content += `\n${getEmoji(emoji)}  -->  <@&${role.id}>`;
     const msg = await channel.send(content).catch((err) => console.log(`[SAE-BOT][ERROR] ${err}`));
     msg.react(emoji).catch((err) => console.log(`[SAE-BOT][ERROR] ${err}`));
-    return fs.open(path.join(__dirname, `../reactionroles/${msg.id}.json`), O_CREAT | O_WRONLY, (err, fd) => {
+    return fs.open(path.join(__dirname, `../data/reactionroles/${msg.id}.json`), O_CREAT | O_WRONLY, (err, fd) => {
         if (err) { console.log(`[SAE-BOT][ERROR] ${err}`); return message.channel.send(messageEmbed(cmd, "Je n'ai pas pu ajouter le message à la base de données.")); }
         return manip.writeJsonFile(fd,
             { guild: msg.channel.guild.id, channel: msg.channel.id, roles: [{ emoji: emoji.id ? emoji.id : emoji.name, role: role.id }] }).then(() => {

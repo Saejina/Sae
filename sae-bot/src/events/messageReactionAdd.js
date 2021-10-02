@@ -1,10 +1,20 @@
 const requireAll = require('require-all');
+const manip = require('../utils/jsonManip');
+const createTicket = require('../functions/createTicket');
+
+async function reactionTickets(reaction, author) {
+    const tickets = await manip.readJsonFile(`${__dirname}/../data/reactionTickets.json`).catch((err) => console.log(`[SAE-BOT][ERROR] ${err}`));
+    tickets.forEach((ticket) => {
+        if (ticket.message === reaction.message.id) { createTicket(reaction, ticket, author); }
+    });
+}
 
 module.exports = (client, reaction, author) => {
     if (author.bot) return;
 
+    if (reaction.emoji.name === '🎟️') { reactionTickets(reaction, author); }
     const files = requireAll({
-        dirname: `${__dirname}/../reactionroles`,
+        dirname: `${__dirname}/../data/reactionroles`,
         filter: /^(?!-)(.+)\.json$/,
     });
     const keys = Object.keys(files);

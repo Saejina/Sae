@@ -2,7 +2,7 @@ const requireAll = require('require-all');
 
 module.exports = (roleId, msgId) => new Promise((resolve, reject) => {
     const files = requireAll({
-        dirname: `${__dirname}/../reactionroles`,
+        dirname: `${__dirname}/../data/reactionroles`,
         filter: /^(?!-)(.+)\.json$/,
     });
     const keys = Object.keys(files);
