@@ -24,7 +24,7 @@ async function addTicketToDatabase(id, author) {
             }).catch(reject);
         } else {
             const fd = fs.openSync(path, O_CREAT | O_WRONLY);
-            manip.writeJsonFile(fd, [id]).then(() => {
+            manip.writeJsonFile(fd, [{ id, author: { name: author.username, id: author.id } }]).then(() => {
                 fs.closeSync(fd);
                 resolve([{ id, author: { name: author.username, id: author.id } }]);
             }).catch(reject);

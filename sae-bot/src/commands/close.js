@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const fetchAll = require('discord-fetch-all');
+const path = require('path');
 const manip = require('../utils/jsonManip');
 const messageEmbed = require('../utils/messageEmbed');
 const transcript = require('../functions/transcript');
@@ -16,9 +17,16 @@ async function closeTicket(message) {
             transcript(cleanedMessages, 'lastTicket')
                 .then(resolve)
                 .catch(reject);
-        })
-            .catch(reject);
+        }).catch(reject);
     });
+}
+
+async function removeFromTickets(message) {
+    const content = await manip.readJsonFile(path.join(__dirname, '..', 'data', 'tickets.json'));
+    const id = content.findIndex((ticket) => ticket.id === message.channel.id);
+    content.splice(id, 1);
+    manip.writeJsonFile(path.join(__dirname, '..', 'data', 'tickets.json'), content)
+        .catch((err) => { console.log(`[SAE-BOT][ERROR] ${err}`); });
 }
 
 module.exports = {
@@ -44,6 +52,7 @@ module.exports = {
                                 saveChannel.send({ files: [attachment], content: `Ticket de <@${channel.author.id}>` });
                             }
                             message.reply(messageEmbed(this, 'Je ferme le ticket.')).catch((err) => console.log(`[SAE-BOT][ERROR] ${err}`));
+                            removeFromTickets(message);
                             return setTimeout(() => message.channel.delete(), 2000);
                         }).catch((err) => { console.log(`[SAE-BOT][ERROR] ${err}`); return channel.send(messageEmbed(this, 'Je ne supprime pas le ticket.')); });
                     });
