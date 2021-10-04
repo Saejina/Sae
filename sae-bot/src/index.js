@@ -16,7 +16,7 @@ if (!fs.existsSync(`${__dirname}/data/cache`)) {
     fs.mkdirSync(`${__dirname}/data/cache`);
 }
 
-const client = new Discord.Client({ intents: ['GUILD_MESSAGES', 'GUILD_MEMBERS', 'GUILD_MESSAGE_REACTIONS', 'DIRECT_MESSAGES', 'DIRECT_MESSAGE_REACTIONS', 'GUILDS'] });
+const client = new Discord.Client({ intents: ['GUILD_MESSAGES', 'GUILD_VOICE_STATES', 'GUILD_MEMBERS', 'GUILD_MESSAGE_REACTIONS', 'DIRECT_MESSAGES', 'DIRECT_MESSAGE_REACTIONS', 'GUILDS'] });
 require('./configs/router');
 const requireAll = require('require-all');
 
