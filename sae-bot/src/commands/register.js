@@ -1,8 +1,8 @@
-const { hash } = require('bcryptjs');
-const Discord = require('discord.js');
+// const { hash } = require('bcryptjs');
+// const Discord = require('discord.js');
 const createHelpEmbed = require('../utils/createHelpEmbed');
 const messageEmbed = require('../utils/messageEmbed');
-
+/*
 async function setPerms(id, channel) {
     return global.database.query('SELECT * from platformUsers where discord_id = ?', id, (err, results) => {
         if (err) {
@@ -43,7 +43,7 @@ async function addToDatabase(username, password, id, channel) {
         });
     });
 }
-
+*/
 module.exports = {
     permissions: ['MANAGE_GUILD'],
     description: 'Crée votre compte sur la plateforme en ligne',
@@ -53,6 +53,8 @@ module.exports = {
         if (args[0] === 'help') {
             return createHelpEmbed(this, message);
         }
+        return message.reply(messageEmbed(this, 'Cette commande est en maintenance.'));
+        /*
         return message.author.createDM().then((channel) => {
             channel.send(messageEmbed(this, "Quel nom d'utilisateur voulez vous utiliser pour vous connecter ?")).then((msg) => {
                 const filter = (mess) => !mess.author.bot;
@@ -110,6 +112,6 @@ module.exports = {
                     return channel.send(messageEmbed(this, "Votre demande d'enregistrement est annulée."));
                 });
             });
-        });
+        }); */
     },
 };
