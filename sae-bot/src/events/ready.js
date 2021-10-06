@@ -48,7 +48,7 @@ async function addMessagesToCache(client) {
 
 module.exports = (client) => {
     console.log(`\n[SAE-BOT] Logged in as ${client.user.tag}!`);
-    global.client.channels.fetch('893856260137566358');
+    global.client.channels.fetch('893856260137566358').catch((err) => { throw err; });
     addMessagesToCache(client);
     addVoiceChannelsToCache(client);
     reload.reload();
