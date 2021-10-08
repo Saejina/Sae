@@ -24,9 +24,17 @@ module.exports = (client, reaction, author) => {
                 if (rr.emoji === emoji.name || rr.emoji === emoji.id) {
                     reaction.message.channel.guild.roles.fetch(rr.role).then((role) => {
                         reaction.message.channel.guild.members.fetch(author.id).then((member) => {
-                            member.roles.add([role]).catch((err) => { console.log(`[SAE-BOT][ERROR] ${err}`); });
-                            if (role.id === "881327035409129523") {
-                                member.roles.remove(["888155741796573204"], "Rules checked !").catch((err) => { console.log(`[SAE-BOT][ERROR] ${err}`)})
+                            if (!member.roles.cache.has(role.id)) {
+                                member.roles.add([role], "Rules Checked!").then(() => {
+                                    if (role.id === "881327035409129523") {
+                                        reaction.message.guild.roles.fetch("888155741796573204")
+                                        .then((eggRole) => {
+                                            member.roles.remove([eggRole], "Rules Checked!").catch((err) => { console.log(`[SAE-BOT][ERROR] ${err}`)})
+                                        })
+                                        .catch((err) => { console.log(`[SAE-BOT][ERROR] ${err}`)})
+                                    }
+                                })
+                                .catch((err) => { console.log(`[SAE-BOT][ERROR] ${err}`); });
                             }
                         });
                     });
