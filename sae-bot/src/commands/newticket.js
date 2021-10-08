@@ -9,18 +9,19 @@ async function addToTickets(channel, message, cmdMessage, cmd) {
     const pathToTickets = `${__dirname}/../data/reactionTickets.json`;
     console.log(pathToTickets);
     if (fs.existsSync(pathToTickets)) {
-        const content = await manip.readJsonFile(pathToTickets).catch((err) => {
+        var content = await manip.readJsonFile(pathToTickets).catch((err) => {
             console.log(`[SAE-BOT][ERROR] ${err}`);
             return cmdMessage.reply(messageEmbed(cmd, 'Une erreur est survenue.'));
         });
+        if (!content) { content = []; }
         content.push({
             guild: channel.guild.id,
             channel: channel.id,
             message: message.id,
         });
         console.log(content);
-        manip.writeJsonFile(content);
-        message.react('🎟️');
+        manip.writeJsonFile(content).catch((err) => { console.log(`[SAE-BOT][ERROR] ${err}`)});
+        message.react('🎟️').catch((err) => { console.log(`[SAE-BOT][ERROR] ${err}`)});
         return cmdMessage.reply(messageEmbed(cmd, 'Ticket créé.'));
     }
     const fd = fs.openSync(pathToTickets, O_CREAT | O_WRONLY);
