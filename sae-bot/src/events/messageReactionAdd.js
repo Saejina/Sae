@@ -22,6 +22,7 @@ module.exports = (client, reaction, author) => {
     keys.forEach((message) => {
         if (message === reaction.message.id) {
             files[message].roles.forEach((rr) => {
+                console.log(rr);
                 if (rr.emoji === emoji.name || rr.emoji === emoji.id) {
                     reaction.message.channel.guild.roles.fetch(rr.role).then((role) => {
                         reaction.message.channel.guild.members.fetch(author.id).then((member) => {
