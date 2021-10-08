@@ -15,6 +15,9 @@ module.exports = (client, reaction, author) => {
                         reaction.message.channel.guild.members.fetch(author.id).then((member) => {
                             if (member.roles.cache.has(role.id)) {
                                 member.roles.remove([role]).catch((err) => { console.log(`[SAE-BOT][ERROR] ${err}`); });
+                                if (role.id === "881327035409129523") {
+                                    member.roles.add(["888155741796573204"]).catch((err) => { console.log(`[SAE-BOT][ERROR] ${err}`)});
+                                }
                             }
                         });
                     });
