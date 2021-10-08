@@ -1,16 +1,15 @@
-const requireAll = require('require-all');
+const fs = require('fs');
 
 module.exports = (client, reaction, author) => {
     if (author.bot) { return; }
-    const files = requireAll({
-        dirname: `${__dirname}/../data/reactionroles`,
-        filter: /^(?!-)(.+)\.json$/,
+    const files = fs.readdirSync(`${__dirname}/../data/reactionroles`);
+    const data = files.map(file => {
+        return { message: file.substring(0, file.length - 5), ...JSON.parse(fs.readFileSync(`${__dirname}/../data/reactionroles/${file}`)) };
     });
-    const keys = Object.keys(files);
     const { emoji } = reaction;
-    keys.forEach((message) => {
-        if (message === reaction.message.id) {
-            files[message].roles.forEach((rr) => {
+    data.forEach((cell) => {
+        if (cell.message === reaction.message.id) {
+            cell.roles.forEach((rr) => {
                 if (rr.emoji === emoji.name || rr.emoji === emoji.id) {
                     reaction.message.channel.guild.roles.fetch(rr.role).then((role) => {
                         reaction.message.channel.guild.members.fetch(author.id).then((member) => {
