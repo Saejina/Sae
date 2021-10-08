@@ -14,7 +14,17 @@ module.exports = (client, reaction, author) => {
                     reaction.message.channel.guild.roles.fetch(rr.role).then((role) => {
                         reaction.message.channel.guild.members.fetch(author.id).then((member) => {
                             if (member.roles.cache.has(role.id)) {
-                                member.roles.remove([role]).catch((err) => { console.log(`[SAE-BOT][ERROR] ${err}`); });
+                                member.roles.remove([role], "Rules unchecked!")
+                                .then(() => {
+                                    if (role.id === "881327035409129523") {
+                                        reaction.message.guild.roles.fetch("888155741796573204")
+                                        .then((eggRole) => {
+                                            member.roles.add([eggRole], "Rules unchecked!").catch((err) => { console.log(`[SAE-BOT][ERROR] ${err}`)})
+                                        })
+                                        .catch((err) => { console.log(`[SAE-BOT][ERROR] ${err}`)})
+                                    }
+                                })
+                                .catch((err) => { console.log(`[SAE-BOT][ERROR] ${err}`); });
                             }
                         });
                     });
