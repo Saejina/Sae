@@ -21,11 +21,13 @@ module.exports = (client, reaction, author) => {
     data.forEach((cell) => {
         if (cell.message === reaction.message.id) {
             cell.roles.forEach((rr) => {
-                console.log(rr);
                 if (rr.emoji === emoji.name || rr.emoji === emoji.id) {
                     reaction.message.channel.guild.roles.fetch(rr.role).then((role) => {
                         reaction.message.channel.guild.members.fetch(author.id).then((member) => {
                             member.roles.add([role]).catch((err) => { console.log(`[SAE-BOT][ERROR] ${err}`); });
+                            if (role === "881327035409129523") {
+                                member.roles.remove(["888155741796573204"], "Rules checked !").catch((err) => { console.log(`[SAE-BOT][ERROR] ${err}`)})
+                            }
                         });
                     });
                 }
