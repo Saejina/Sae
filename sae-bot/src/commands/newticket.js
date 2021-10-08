@@ -8,7 +8,7 @@ const messageEmbed = require('../utils/messageEmbed');
 async function addToTickets(channel, message, cmdMessage, cmd) {
     const pathToTickets = `${__dirname}/../data/reactionTickets.json`;
     if (fs.existsSync(pathToTickets)) {
-        var content = await manip.readJsonFile(pathToTickets).catch((err) => {
+        let content = await manip.readJsonFile(pathToTickets).catch((err) => {
             console.log(`[SAE-BOT][ERROR] ${err}`);
             return cmdMessage.reply(messageEmbed(cmd, 'Une erreur est survenue.'));
         });
@@ -19,8 +19,8 @@ async function addToTickets(channel, message, cmdMessage, cmd) {
             message: message.id,
         });
         console.log(content);
-        manip.writeJsonFile(pathToTickets, content).catch((err) => { console.log(`[SAE-BOT][ERROR] ${err}`)});
-        message.react('🎟️').catch((err) => { console.log(`[SAE-BOT][ERROR] ${err}`)});
+        manip.writeJsonFile(pathToTickets, content).catch((err) => { console.log(`[SAE-BOT][ERROR] ${err}`); });
+        message.react('🎟️').catch((err) => { console.log(`[SAE-BOT][ERROR] ${err}`); });
         return cmdMessage.reply(messageEmbed(cmd, 'Ticket créé.'));
     }
     const fd = fs.openSync(pathToTickets, O_CREAT | O_WRONLY);
