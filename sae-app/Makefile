@@ -6,7 +6,7 @@ format-client:
 format-server:
 	@make -C server format
 
-host:	host-server	host-client
+host: host-server	host-client
 
 host-server:
 	@make -C server host

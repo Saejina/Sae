@@ -40,7 +40,7 @@ async function addMessagesToCache(client) {
     if (tickets && tickets.length > 0) {
         tickets.forEach((ticket) => {
             client.channels.fetch(ticket.channel).then((channel) => {
-                channel.messages.fetch(ticket.messages);
+                channel.messages.fetch(ticket.message).then((msg) => msg.react('🎟️').catch((err) => console.log(`[SAE-BOT][ERROR] ${err}`)));
             });
         });
     }
