@@ -5,7 +5,7 @@ const createTicket = require('../functions/createTicket');
 async function reactionTickets(reaction, author) {
     const tickets = await manip.readJsonFile(`${__dirname}/../data/reactionTickets.json`).catch((err) => console.log(`[SAE-BOT][ERROR] ${err}`));
     tickets.forEach((ticket) => {
-        if (ticket.message === reaction.message.id) { createTicket(reaction, ticket, author); }
+        if (ticket.message === reaction.message.id) { createTicket(reaction, ticket, author); reaction.users.remove(author).catch((err) => console.log(`[SAE-BOT][ERROR] ${err}`))}
     });
 }
 

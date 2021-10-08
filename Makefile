@@ -1,3 +1,5 @@
+all: install
+
 build-sae-app:
 	@make -C sae-app/ build
 
@@ -25,6 +27,9 @@ format-sae-bot:
 
 host-sae-app:
 	@make -C sae-app/ host
+
+host-sae-bot:
+	@make -C sae-bot/ host
 
 install: install-sae-app install-sae-bot
 
