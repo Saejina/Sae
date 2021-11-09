@@ -105,3 +105,4 @@ dist
 
 # Useless Emacs Files
 *.idea/
+*\~
