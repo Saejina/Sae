@@ -34,7 +34,7 @@ module.exports = {
         return message.channel.awaitMessages({
             filter, max: 1, time: 120000, erros: ['time'],
         }).then((collected) => {
-            let channel = collected.first().mentions.channels.first() ? collected.first().mentions.channels.first() : collected.first().content;
+            let channel = collected.first().mentions.channels && collected.first().mentions.channels.first() ? collected.first().mentions.channels.first() : collected.first().content;
             if (typeof channel === 'string') {
                 channel = message.channel.guild.channels.cache.get(channel);
             }
