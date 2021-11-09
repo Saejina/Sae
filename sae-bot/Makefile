@@ -1,3 +1,5 @@
+all:	install
+
 clean:
 	@find . -name '*.log' -delete
 	@find . -name '*\~' -delete
@@ -23,8 +25,6 @@ start:
 upgrade:
 	@printf "\033[0;33mUpgrading NodeJS packages for sae-bot\033[0m\n"
 	@yarn upgrade
-
-.DEFAULT_GOAL:	install
 
 .PHONY: clean 		\
 		database	\
