@@ -33,7 +33,7 @@ module.exports = {
         if (!args || args.length === 0 || args[0] === 'help') {
             return createHelpEmbed(this, message);
         }
-        const channel = message.mentions.channels.first() ? message.mentions.channels.first() : message.channel.guild.channels.cache.get(args[0]);
+        const channel = message.mentions.channels && message.mentions.channels.first() ? message.mentions.channels.first() : message.channel.guild.channels.cache.get(args[0]);
         if (!channel) {
             return message.reply(messageEmbed(this, "Je n'ai pas trouvé ce channel"));
         }
