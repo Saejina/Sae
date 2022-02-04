@@ -35,7 +35,7 @@ async function addMessagesToCache(client) {
     messages.forEach((mess) => {
         client.channels.fetch(files[mess].channel).then((channel) => {
             channel.messages.fetch(files[mess]);
-        });
+        }).catch((e) => console.log(`[SAE-BOT][ERROR] ${e}`));
     });
     if (tickets && tickets.length > 0) {
         tickets.forEach((ticket) => {
