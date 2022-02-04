@@ -54,7 +54,7 @@ module.exports = {
                             message.reply(messageEmbed(this, 'Je ferme le ticket.')).catch((err) => console.log(`[SAE-BOT][ERROR] ${err}`));
                             removeFromTickets(message);
                             return setTimeout(() => message.channel.delete(), 2000);
-                        }).catch((err) => { console.log(`[SAE-BOT][ERROR] ${err}`); return channel.send(messageEmbed(this, 'Je ne supprime pas le ticket.')); });
+                        }).catch((err) => { console.log(`[SAE-BOT][ERROR] ${err}`); return channel?.send(messageEmbed(this, 'Je ne supprime pas le ticket.')); });
                     });
                 })
                 .catch((err) => {
